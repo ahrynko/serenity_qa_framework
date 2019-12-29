@@ -1,4 +1,4 @@
-package com.hillel.ua.page_object.webdriver;
+package com.hillel.ua.webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,18 +7,18 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Set;
 
-public class WebdDriverAdaptor implements WebDriver {
+public class WebDriverAdaptor implements WebDriver {
 
     private WebElement wrappedElement;
     private WebDriver wrappedDriver;
 
-    public WebdDriverAdaptor(final WebElement wrappedElement, final WebDriver wrappedDriver) {
-        this.wrappedElement = wrappedElement;
+    public WebDriverAdaptor(final WebElement wrappedElement, final WebDriver wrappedDriver) { //wrappedDriver -root page for driver
+        this.wrappedElement = wrappedElement;                                                  // wrappedElement -locator panel
         this.wrappedDriver = wrappedDriver;
     }
 
     @Override
-    public void get(String s) {
+    public void get(final String s) {
         wrappedDriver.get(s);
     }
 
@@ -33,12 +33,12 @@ public class WebdDriverAdaptor implements WebDriver {
     }
 
     @Override
-    public List<WebElement> findElements(By by) {
+    public List<WebElement> findElements(final By by) {
         return wrappedDriver.findElements(by);
     }
 
     @Override
-    public WebElement findElement(By by) {
+    public WebElement findElement(final By by) {
         return wrappedDriver.findElement(by);
     }
 
@@ -49,17 +49,17 @@ public class WebdDriverAdaptor implements WebDriver {
 
     @Override
     public void close() {
-
+        wrappedDriver.close();
     }
 
     @Override
     public void quit() {
-
+        wrappedDriver.quit();
     }
 
     @Override
     public Set<String> getWindowHandles() {
-        return null;
+        return wrappedDriver.getWindowHandles();
     }
 
     @Override

@@ -25,9 +25,9 @@ public abstract class AbstractPanel {
   private void initPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate){
     this.driverDelegate = driverDelegate;
     waitForTimeoutInMilliseconds = driverDelegate.waitForTimeoutInMilliseconds();
-    panelToWebDriver = new WebDriverAdaptor(panelBaseLocation, getDriver());
-    final ElementLocatorFactory finder = new SmartElementLocatorFactory(panelToWebDriver, MobilePlatform.NONE);
-    final FieldDecorator decorator = new SmartFieldDecorator(finder, getDriver(), driverDelegate);
-    PageFactory.initElements(decorator, this);
+    panelToWebDriver = new WebDriverAdaptor(panelBaseLocation, getDriver()); //Adaptor -подружить два элемента (webDriver/ webElement)
+    final ElementLocatorFactory finder = new SmartElementLocatorFactory(panelToWebDriver, MobilePlatform.NONE); //finder- ищет элементы на странице по локатору
+    final FieldDecorator decorator = new SmartFieldDecorator(finder, getDriver(), driverDelegate); //decorator - связка кнопки с webElement
+    PageFactory.initElements(decorator, this); //serenity _decorator
   }
 }

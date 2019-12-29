@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AbstractPage extends PageObject {
 
-    public AbstractPage(final WebDriver webDriver){
+    public AbstractPage(final WebDriver webDriver){  //dependency injection
         super(webDriver);
         getDriver().manage().window().maximize();
         waitForAngularRequestsToFinish();

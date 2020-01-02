@@ -1,11 +1,13 @@
 Meta:
+@google_tests
 
 Narrative:
 As a user
 I want to perform an action
 So that I can achieve a business goal
 
-Scenario: scenario description
-Given a system state
-When I do something
-Then system is in a different state
+Scenario: Verify Google site title
+
+Given user opened following url: 'https://www.google.com.ua/'
+When user retrieved site title
+Then retrieved title value should be: 'Google'

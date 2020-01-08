@@ -30,4 +30,8 @@ public abstract class AbstractPanel {
     final FieldDecorator decorator = new SmartFieldDecorator(finder, getDriver(), driverDelegate); //decorator - связка кнопки с webElement
     PageFactory.initElements(decorator, this); //serenity _decorator
   }
+
+  public AbstractPage getRootPage(){
+    return driverDelegate;
+  }
 }

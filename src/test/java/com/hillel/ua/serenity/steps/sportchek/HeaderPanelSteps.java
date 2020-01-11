@@ -17,4 +17,14 @@ public class HeaderPanelSteps extends ScenarioSteps {
     public void openBurgerMenu() {
         sportchekMainPage.getHeaderPanel().clickBurgerMenuButton();
     }
+
+    @Step
+    public void movedToMouse() {
+        sportchekMainPage.getHeaderPanel().movedMouseToShoppingCart();
+    }
+
+    @Step
+    public String retrieveCartMessage() {
+       return sportchekMainPage.getHeaderPanel().retrieveHeaderCartMessage();
+    }
 }

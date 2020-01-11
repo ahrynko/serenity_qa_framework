@@ -34,7 +34,7 @@ public class BurgerMenuScenario {
   }
 
   @Then("following menu items are displayed: '$menuItems'")
-  public void verifyBurgerMenuItems(final List<String> expectedMenuItems){
+  public void verifyBurgerMenuItems(final List<String> expectedMenuItems) {
 
     final List<String> actualMenuItems =  burgerMenuSteps.getMenuItems();
 

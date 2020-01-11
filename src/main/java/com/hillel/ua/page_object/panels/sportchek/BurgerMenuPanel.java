@@ -15,7 +15,7 @@ public class BurgerMenuPanel extends AbstractPanel {
     super(panelBaseLocation, driverDelegate);
   }
 
-  public List<String>getMenuItems(){
+  public List<String>getMenuItems() {
     return findAll(MENU_ITEMS)
             .stream()
             .map(item -> item.getText()) //WebElementFacade::getText (если приходит 1 парам)

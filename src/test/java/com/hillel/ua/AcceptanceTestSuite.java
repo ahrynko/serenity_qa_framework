@@ -11,7 +11,7 @@ public class AcceptanceTestSuite extends SerenityStories {  //главный к�
     private static final String STORY_FILE_PATTERN = "VerifySportCheckFunctionality.story";
 
 
-    public AcceptanceTestSuite(){
+    public AcceptanceTestSuite() {
         super();
         Optional.ofNullable(STORY_FILE_PATTERN).ifPresent(this::findStoriesCalled); // класс Optional - позволяет обойти null pointer Exception
         configuration().useParameterControls(new ParameterControls().useDelimiterNamedParameters(true));

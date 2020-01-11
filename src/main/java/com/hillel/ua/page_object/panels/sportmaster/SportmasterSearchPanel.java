@@ -1,9 +1,10 @@
-package com.hillel.ua.page_object.panels;
+package com.hillel.ua.page_object.panels.sportmaster;
 
 import com.hillel.ua.page_object.pages.AbstractPage;
+import com.hillel.ua.page_object.panels.AbstractPanel;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-public class SportmasterSearchPanel extends AbstractPanel{
+public class SportmasterSearchPanel extends AbstractPanel {
 
   private static final String SEARCH_INPUT_LOCATOR = ".//input[@name='search_str']";
 
@@ -12,7 +13,7 @@ public class SportmasterSearchPanel extends AbstractPanel{
   }
 
   public void inputSearchText (final String text){
-    getRootPage().findBy(SEARCH_INPUT_LOCATOR).typeAndEnter(text);
+    findBy(SEARCH_INPUT_LOCATOR).typeAndEnter(text);
   }
 
 }

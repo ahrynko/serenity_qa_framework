@@ -1,6 +1,7 @@
-package com.hillel.ua.page_object.pages;
+package com.hillel.ua.page_object.pages.sportmaster;
 
-import com.hillel.ua.page_object.panels.SportmasterSearchPanel;
+import com.hillel.ua.page_object.pages.AbstractPage;
+import com.hillel.ua.page_object.panels.sportmaster.SportmasterSearchPanel;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 

@@ -1,5 +1,6 @@
-package com.hillel.ua.page_object.pages;
+package com.hillel.ua.page_object.pages.sportmaster;
 
+import com.hillel.ua.page_object.pages.AbstractPage;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebDriver;
 

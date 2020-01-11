@@ -2,6 +2,7 @@ package com.hillel.ua.page_object.panels;
 
 import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.webdriver.WebDriverAdaptor;
+import lombok.Getter;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.locators.SmartElementLocatorFactory;
 import net.thucydides.core.annotations.locators.SmartFieldDecorator;
@@ -10,12 +11,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.FieldDecorator;
 
+import java.util.List;
+
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
+@Getter
 public abstract class AbstractPanel {
 
   private long waitForTimeoutInMilliseconds = 5000;
-  private AbstractPage driverDelegate;
+  private AbstractPage driverDelegate;  // root page with driver
   private WebDriverAdaptor panelToWebDriver;
 
   public AbstractPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate){
@@ -31,7 +35,11 @@ public abstract class AbstractPanel {
     PageFactory.initElements(decorator, this); //serenity _decorator
   }
 
-  public AbstractPage getRootPage(){
-    return driverDelegate;
+  public WebElementFacade findBy(final String locator){ //call with root page findBy via driverDelegate
+    return driverDelegate.findBy(locator);
+  }
+
+  public List<WebElementFacade> findAll(final String locator){
+    return driverDelegate.findAll(locator);
   }
 }

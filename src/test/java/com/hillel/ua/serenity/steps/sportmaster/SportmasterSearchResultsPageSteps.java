@@ -1,6 +1,6 @@
 package com.hillel.ua.serenity.steps.sportmaster;
 
-import com.hillel.ua.page_object.pages.SportmasterSearchResultPage;
+import com.hillel.ua.page_object.pages.sportmaster.SportmasterSearchResultPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;

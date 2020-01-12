@@ -15,6 +15,6 @@ public class AcceptanceTestSuite extends SerenityStories {  //главный к�
         super();
         Optional.ofNullable(STORY_FILE_PATTERN).ifPresent(this::findStoriesCalled); // класс Optional - позволяет обойти null pointer Exception
         configuration().useParameterControls(new ParameterControls().useDelimiterNamedParameters(true));
-        configuration().usePendingStepStrategy(new FailingUponPendingStep());;
+        configuration().usePendingStepStrategy(new FailingUponPendingStep());
     }
 }

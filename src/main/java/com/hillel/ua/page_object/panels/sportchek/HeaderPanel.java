@@ -13,6 +13,9 @@ public class HeaderPanel extends AbstractPanel {
   private static final String HEADER_CART_MESSAGE_LOCATOR = ".//div[@class='header-cart__empty-message']";
   private static final String SEARCH_INPUT_LOCATOR = ".//div[@class='rfkx_inputwrap rfk-sbi']//input";
   private static final String SEARCH_INPUT_PANEL  = ".//div[@class='rfk_conwrapper']";
+  private static final String SIGN_IN_BUTTON = ".//a[@class='header-account__trigger']";
+  private static final String SIGN_IN_PANEL = ".//section[@class='header-account__sign-in']";
+
 
   public HeaderPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
     super(panelBaseLocation, driverDelegate);
@@ -41,6 +44,14 @@ public class HeaderPanel extends AbstractPanel {
 
   public SearchInputPanel getSearchInputPanel() {
       return new SearchInputPanel(findBy(SEARCH_INPUT_PANEL).waitUntilVisible(),getDriverDelegate());
+  }
+
+  public void clickSignInButton() {
+    findBy(SIGN_IN_BUTTON).waitUntilVisible().click();
+  }
+
+  public SignInPanel getSignInPanel() {
+    return new SignInPanel(findBy(SIGN_IN_PANEL).waitUntilVisible(),getDriverDelegate());
   }
 
 }

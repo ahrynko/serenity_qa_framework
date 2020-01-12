@@ -1,5 +1,5 @@
 Meta:
-@sportcheck_tests
+@sportchek_tests
 
 Narrative:
 As a user

@@ -1,6 +1,6 @@
 package com.hillel.ua.serenity.steps.google;
 
-import com.hillel.ua.page_object.pages.GoogleMainPage;
+import com.hillel.ua.page_object.pages.google.GoogleMainPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;

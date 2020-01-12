@@ -1,6 +1,7 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
 import com.hillel.ua.page_object.pages.sportchek.SportchekMainPage;
+import com.hillel.ua.page_object.panels.sportchek.SearchInputPanel;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
@@ -26,5 +27,10 @@ public class HeaderPanelSteps extends ScenarioSteps {
     @Step
     public String retrieveCartMessage() {
        return sportchekMainPage.getHeaderPanel().retrieveHeaderCartMessage();
+    }
+
+    @Step
+    public void inputSearchFor(final String text) {
+        sportchekMainPage.getHeaderPanel().inputSearchText(text);
     }
 }

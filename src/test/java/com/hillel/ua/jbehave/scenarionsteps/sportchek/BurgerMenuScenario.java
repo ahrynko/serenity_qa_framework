@@ -23,7 +23,7 @@ public class BurgerMenuScenario {
   @Steps
   private BurgerMenuSteps burgerMenuSteps; //step to case cases
 
-  @Given("user opened site, using next url: '$url'")
+  @Given("user opened site using next url: '$url'")
   public void openSite(final String url) {
     sportCheckMainPageSteps.openPage(url);
   }

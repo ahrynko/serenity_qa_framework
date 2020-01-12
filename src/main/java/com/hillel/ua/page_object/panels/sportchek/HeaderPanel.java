@@ -11,6 +11,8 @@ public class HeaderPanel extends AbstractPanel {
   private static final String BURGER_MENU_PANEL = ".//div[@data-module-type='MainNavigation']";
   private static final String SHOPPING_CART_LOCATOR = ".//a[@class='header-cart__trigger drawer-ui__toggle']";
   private static final String HEADER_CART_MESSAGE_LOCATOR = ".//div[@class='header-cart__empty-message']";
+  private static final String SEARCH_INPUT_LOCATOR = ".//div[@class='rfkx_inputwrap rfk-sbi']//input";
+  private static final String SEARCH_INPUT_PANEL  = ".//div[@class='rfk_conwrapper']";
 
   public HeaderPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
     super(panelBaseLocation, driverDelegate);
@@ -31,6 +33,14 @@ public class HeaderPanel extends AbstractPanel {
 
   public String retrieveHeaderCartMessage() {
    return findBy(HEADER_CART_MESSAGE_LOCATOR).waitUntilVisible().getText();
+  }
+
+  public void inputSearchText(final String text) {
+      findBy(SEARCH_INPUT_LOCATOR).waitUntilVisible().type(text);
+  }
+
+  public SearchInputPanel getSearchInputPanel() {
+      return new SearchInputPanel(findBy(SEARCH_INPUT_PANEL).waitUntilVisible(),getDriverDelegate());
   }
 
 }

@@ -50,7 +50,7 @@ public class RegisterPanelSteps extends ScenarioSteps {
     }
 
     @Step
-    public String errorMessageMessageConfirmEmail() {
+    public String errorMessageConfirmEmail() {
         return sportchekMainPage.getHeaderPanel().getSignInPanel().getRegisterPanel().retrieveErrorMessageConfirmEmail();
     }
 

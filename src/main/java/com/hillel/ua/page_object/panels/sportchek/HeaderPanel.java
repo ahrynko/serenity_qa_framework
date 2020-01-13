@@ -51,7 +51,7 @@ public class HeaderPanel extends AbstractPanel {
   }
 
   public SignInPanel getSignInPanel() {
-    return new SignInPanel(findBy(SIGN_IN_PANEL).waitUntilVisible(),getDriverDelegate());
+    return new SignInPanel(findBy(SIGN_IN_PANEL),getDriverDelegate());  //delete wait
   }
 
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class AcceptanceTestSuite extends SerenityStories {  //главный класс, который умеет ранить тесты(все *.story, или один)
 
-    private static final String STORY_FILE_PATTERN = "SportCheckPredictiveSearchFunctionality.story";
+    private static final String STORY_FILE_PATTERN = "SportCheckVerifyErrorMessagesToUserRegistration.story";
 
 
     public AcceptanceTestSuite(){

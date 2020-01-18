@@ -47,7 +47,7 @@ public class HeaderPanel extends AbstractPanel {
   }
 
   public void clickSignInButton() {
-    findBy(SIGN_IN_BUTTON).waitUntilVisible().click();
+    findBy(SIGN_IN_BUTTON).waitUntilClickable().click();
   }
 
   public SignInPanel getSignInPanel() {

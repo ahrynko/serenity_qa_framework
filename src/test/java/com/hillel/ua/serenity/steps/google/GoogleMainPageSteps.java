@@ -22,4 +22,9 @@ public class GoogleMainPageSteps extends ScenarioSteps {
   public void openPageByUrl(final String url) {
     googleMainPage.openUrl(url);
   }
+
+  @Step
+  public boolean isLogoVisible() {
+    return googleMainPage.isLogoVisible();
+  }
 }

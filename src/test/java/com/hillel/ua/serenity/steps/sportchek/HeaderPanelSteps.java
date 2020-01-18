@@ -33,4 +33,9 @@ public class HeaderPanelSteps extends ScenarioSteps {
     public void inputSearchFor(final String text) {
         sportchekMainPage.getHeaderPanel().inputSearchText(text);
     }
+
+    @Step
+    public void openSignInPopup() {
+        sportchekMainPage.getHeaderPanel().clickSignInButton();
+    }
 }

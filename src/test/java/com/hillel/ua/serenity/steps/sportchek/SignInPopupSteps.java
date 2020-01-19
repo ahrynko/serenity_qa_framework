@@ -14,6 +14,6 @@ public class SignInPopupSteps {
 
     @Step
     public void openRegisterNowPopup() {
-        sportchekMainPage.getSignInPopupPanel();
+        sportchekMainPage.getSignInPopupPanel().clickRegisterNowButton(); //открыто окно регистрации
     }
 }

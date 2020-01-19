@@ -1,4 +1,4 @@
-Meta:'Your password must be 8-40 characters long.'
+Meta:
 @sportchek_tests
 
 Narrative:
@@ -14,5 +14,5 @@ Given user clicks Register Now button
 When user typed one character in each input field: 'w'
 Then following message is displayed in Email input field: 'Please enter your email address in this format: name@example.com'
 Then following message is displayed in Confirm Email input field: 'Please enter your email address in this format: name@example.com'
-Then following message is displayed in Password input field:
+Then following message is displayed in Password input field: 'Your password must be 8-40 characters long.'
 Then following message is displayed in Confirm Password input field: 'Your password must be 8-40 characters long.'

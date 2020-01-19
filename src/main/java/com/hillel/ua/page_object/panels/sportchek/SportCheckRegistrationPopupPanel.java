@@ -17,6 +17,8 @@ public class SportCheckRegistrationPopupPanel extends AbstractPanel {
     private static final String PASSWORD_ERROR = ".//span[@for='password']";
     private static final String CONFIRM_PASSWORD_ERROR = ".//span[@for='confirmPassword']";
 
+    private static final String  REGISTER_NOW_BUTTON = ".//input[@value='Register']";
+
     public SportCheckRegistrationPopupPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
         super(panelBaseLocation, driverDelegate);
     }
@@ -32,6 +34,10 @@ public class SportCheckRegistrationPopupPanel extends AbstractPanel {
     }
     public void typeConfirmPassword(final String typeConfirmPassword) {
         findBy(CONFIRM_PASSWORD_INPUT).type(typeConfirmPassword);
+    }
+
+    public void clickRegisterButton() {
+        findBy(REGISTER_NOW_BUTTON).click();
     }
 
     public RegisterErrorsModel getRegisterErrors() {

@@ -1,5 +1,6 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
+import com.hillel.ua.page_object.model.RegisterErrorsModel;
 import com.hillel.ua.serenity.steps.sportchek.SignInPopupSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
@@ -16,8 +17,4 @@ public class SportCheckSignInPopupScenario {
         signInPopupSteps.openRegisterNowPopup();
     }
 
-    @Then("following error displayed: $errors")
-    public void verifySignUpErrorsDisplayed(final ExamplesTable errors) {
-
-    }
 }

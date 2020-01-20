@@ -1,5 +1,6 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
+import com.hillel.ua.page_object.model.RegisterErrorsModel;
 import com.hillel.ua.page_object.model.UserRegistrationModel;
 import com.hillel.ua.page_object.pages.sportchek.SportchekMainPage;
 import com.hillel.ua.page_object.panels.sportchek.SportCheckRegistrationPopupPanel;
@@ -28,4 +29,8 @@ public class SportCheckRegisterPopupSteps extends ScenarioSteps {
         sportCheckRegistrationPopupPanel.clickRegisterButton();
     }
 
+    @Step
+    public RegisterErrorsModel getDisplayedErrors() {
+        return sportchekMainPage.getsportCheckRegistrationPopupPanel().getRegisterErrors();
+    }
 }

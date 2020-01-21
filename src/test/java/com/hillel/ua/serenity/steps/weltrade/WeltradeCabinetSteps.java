@@ -1,7 +1,6 @@
 package com.hillel.ua.serenity.steps.weltrade;
 
 import com.hillel.ua.page_object.pages.weltrade.WeltradeCabinetPage;
-import com.hillel.ua.page_object.pages.weltrade.WeltradeMainPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 

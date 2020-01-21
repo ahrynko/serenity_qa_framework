@@ -23,7 +23,7 @@ public class WeltradeAuthorizationPanel extends AbstractPanel {
     }
 
     public void clickSignInButton() {
-        findBy(SIGN_IN_BUTTON).click();
+        findBy(SIGN_IN_BUTTON).waitUntilClickable().click(); //wait ?
     }
 
 }

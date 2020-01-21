@@ -15,4 +15,6 @@ And user tries to sign in to Weltrade site , using following info:
 | test_uk@bk.ru | 123qaz   |
 
 Then user retrieved Weltrade site title
-And retrieved Weltrade site title value should be: 'Personal area controls - WELTRADE'
+And retrieved Weltrade site title value should be:
+| title                             |
+| Personal area controls - WELTRADE |

@@ -1,7 +1,7 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
-import com.hillel.ua.page_object.model.RegisterErrorsModel;
-import com.hillel.ua.page_object.model.UserRegistrationModel;
+import com.hillel.ua.page_object.model.sportchek.RegisterErrorsModel;
+import com.hillel.ua.page_object.model.sportchek.UserRegistrationModel;
 import com.hillel.ua.page_object.pages.sportchek.SportchekMainPage;
 import com.hillel.ua.page_object.panels.sportchek.SportCheckRegistrationPopupPanel;
 import net.thucydides.core.annotations.Step;

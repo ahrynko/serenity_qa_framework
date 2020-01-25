@@ -1,4 +1,4 @@
-package com.hillel.ua.page_object.model;
+package com.hillel.ua.page_object.model.sportchek;
 
 import lombok.Data;
 

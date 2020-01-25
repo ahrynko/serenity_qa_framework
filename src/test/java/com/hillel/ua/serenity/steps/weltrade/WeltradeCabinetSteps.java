@@ -16,4 +16,5 @@ public class WeltradeCabinetSteps {
     public String getCurrentWeltradeTitle() {
         return weltradeCabinetPage.getCurrentTitle();
     }
+
 }

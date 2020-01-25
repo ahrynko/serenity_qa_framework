@@ -5,11 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class WeltradeCabinetPage extends AbstractPage {
 
-    public WeltradeCabinetPage(WebDriver webDriver) {
+    public WeltradeCabinetPage(final WebDriver webDriver) {
         super(webDriver);
     }
 
     public String getCurrentTitle(){
         return getTitle();
     }
+
 }

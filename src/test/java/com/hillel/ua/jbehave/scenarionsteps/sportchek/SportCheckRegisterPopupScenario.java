@@ -1,7 +1,7 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
-import com.hillel.ua.page_object.model.RegisterErrorsModel;
-import com.hillel.ua.page_object.model.UserRegistrationModel;
+import com.hillel.ua.page_object.model.sportchek.RegisterErrorsModel;
+import com.hillel.ua.page_object.model.sportchek.UserRegistrationModel;
 import com.hillel.ua.serenity.steps.sportchek.SportCheckRegisterPopupSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;

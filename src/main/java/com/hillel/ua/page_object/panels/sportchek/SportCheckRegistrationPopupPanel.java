@@ -1,6 +1,6 @@
 package com.hillel.ua.page_object.panels.sportchek;
 
-import com.hillel.ua.page_object.model.RegisterErrorsModel;
+import com.hillel.ua.page_object.model.sportchek.RegisterErrorsModel;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.page_object.panels.AbstractPanel;
 import net.serenitybdd.core.pages.WebElementFacade;

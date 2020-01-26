@@ -38,4 +38,9 @@ public class HeaderPanelSteps extends ScenarioSteps {
     public void openSignInPopup() {
         sportchekMainPage.getHeaderPanel().clickSignInButton();
     }
+
+    @Step
+    public void openChooseStorePopup() {
+        sportchekMainPage.getHeaderPanel().clickChooseStoreNowButton();
+    }
 }

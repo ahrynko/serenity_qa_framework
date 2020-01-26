@@ -15,6 +15,7 @@ public class HeaderPanel extends AbstractPanel {
   private static final String SEARCH_INPUT_PANEL  = ".//div[@class='rfk_conwrapper']";
   private static final String SIGN_IN_BUTTON = ".//a[@class='header-account__trigger']";
   private static final String SIGN_IN_PANEL = ".//section[@class='header-account__sign-in']";
+  private static final String CHOOSE_STORE_NOW_BUTTON = ".//a[@class='header-pickup-store__link-container']";
 
 
   public HeaderPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
@@ -53,5 +54,9 @@ public class HeaderPanel extends AbstractPanel {
   public SignInPanel getSignInPanel() {
     return new SignInPanel(findBy(SIGN_IN_PANEL),getDriverDelegate());  //delete wait
   }
+
+    public void clickChooseStoreNowButton() {
+    findBy(CHOOSE_STORE_NOW_BUTTON).waitUntilClickable().click();
+    }
 
 }

@@ -12,6 +12,10 @@ public class SportCheckHeaderScenario {
     @When("user clicks 'Sign In' button")
     public void clickSignInButton() {
         headerPanelSteps.openSignInPopup();
+    }
 
+    @When("user clicks 'Choose store now' button")
+    public void clickChooseStoreNowButton() {
+        headerPanelSteps.openChooseStorePopup();
     }
 }

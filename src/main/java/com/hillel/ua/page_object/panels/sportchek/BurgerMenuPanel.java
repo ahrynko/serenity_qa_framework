@@ -3,7 +3,6 @@ package com.hillel.ua.page_object.panels.sportchek;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.page_object.panels.AbstractPanel;
 import net.serenitybdd.core.pages.WebElementFacade;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -8,7 +8,7 @@ public class WeltradeSignInPage extends AbstractPage {
 
     private static final String AUTHORIZATION_PANEL = ".//div[@class='box mt-5']";
 
-    public WeltradeSignInPage(WebDriver webDriver) {
+    public WeltradeSignInPage(final WebDriver webDriver) {
         super(webDriver);
     }
 

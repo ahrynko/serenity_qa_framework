@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class SportmasterSearchResultPage extends AbstractPage {
 
-  public SportmasterSearchResultPage(WebDriver webDriver) {
+  public SportmasterSearchResultPage(final WebDriver webDriver) {
     super(webDriver);
   }
 

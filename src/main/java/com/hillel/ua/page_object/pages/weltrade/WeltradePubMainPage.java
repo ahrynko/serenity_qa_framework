@@ -4,11 +4,11 @@ import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.page_object.panels.weltrade.WeltradePubHeaderPanel;
 import org.openqa.selenium.WebDriver;
 
-public class WeltradeMainPage extends AbstractPage {
+public class WeltradePubMainPage extends AbstractPage {
 
     private static final String HEADER_LOCATOR = "//header[@class='wt-main-header js-header']";
 
-    public WeltradeMainPage(WebDriver webDriver) {
+    public WeltradePubMainPage(WebDriver webDriver) {
         super(webDriver);
     }
 

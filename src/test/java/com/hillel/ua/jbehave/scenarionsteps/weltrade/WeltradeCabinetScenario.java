@@ -4,6 +4,7 @@ import com.hillel.ua.serenity.steps.weltrade.WeltradeCabinetSteps;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
+import org.jbehave.core.model.ExamplesTable;
 import org.unitils.reflectionassert.ReflectionAssert;
 
 public class WeltradeCabinetScenario {

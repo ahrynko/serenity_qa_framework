@@ -7,6 +7,7 @@ So that I can achieve a business goal
 
 Scenario: Verify user is able to sort the product
 
-Given user opened Sportcheck site using following url: 'https://www.sportchek.ca/categories/shop-by-sport/alpine-skiing/ski-packages.html?lastVisibleProductNumber=22'
-When user chooses 'Rating High to Low' in dropdown SORT BY
+Given user opened 'Alpine Skiing Page'
+When user clicks Sort By dropdown
+And user clicks 'Rating High to Low' in SORT BY dropdown
 Then products are sorted by the number of stars

@@ -1,5 +1,7 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
+import com.hillel.ua.common.data.UrlBuilder;
+import com.hillel.ua.page_object.pages.sportchek.ShoppingCartPage;
 import com.hillel.ua.page_object.pages.sportchek.SportcheckAlpineSkiingPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
@@ -14,8 +16,13 @@ public class SportcheckSortedAlpineSkiingSteps extends ScenarioSteps {
     }
 
     @Step
-    public void orderBySelect(String text) {
-        sportcheckAlpineSkiingPage.orderBy(text);
+    public void clicksSortBy() {
+        sportcheckAlpineSkiingPage.clicksSortBy();
+    }
+
+    @Step
+    public void clicksBySelect() {
+        sportcheckAlpineSkiingPage.clicksBySelect();
     }
 
     @Step
@@ -23,14 +30,18 @@ public class SportcheckSortedAlpineSkiingSteps extends ScenarioSteps {
         sportcheckAlpineSkiingPage.getProducts();
     }
 
+
+
+
     @Step
-    public void openPageByUrl(final String url) {
-        sportcheckAlpineSkiingPage.openUrl(url);
+    public void orderBySelect(String text) {
+        sportcheckAlpineSkiingPage.orderBy(text);
     }
 
     @Step
-    public void chooseAtomic() {
-        sportcheckAlpineSkiingPage.chooseAtomic();
+    public void openPageByPartialUrl(final String commonUrl) {
+        final String fullNavUrl = UrlBuilder.buildFullUrl(commonUrl, SportcheckAlpineSkiingPage.class);
+        sportcheckAlpineSkiingPage.openUrl(fullNavUrl);
     }
 
 }

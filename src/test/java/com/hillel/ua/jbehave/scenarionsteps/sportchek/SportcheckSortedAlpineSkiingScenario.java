@@ -1,5 +1,7 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
+import com.hillel.ua.common.helper.PropertyHelper;
+import com.hillel.ua.page_object.model.sportchek.SportCheckProducts;
 import com.hillel.ua.serenity.steps.sportchek.SportcheckSortedAlpineSkiingSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
@@ -10,23 +12,31 @@ import java.util.List;
 
 public class SportcheckSortedAlpineSkiingScenario {
 
+    private PropertyHelper propertyHelper = new PropertyHelper();
+
     @Steps
     private SportcheckSortedAlpineSkiingSteps sportcheckSortedAlpineSkiingSteps;
 
-    @Given("user opened Sportcheck site using following url: '$url'")
-    public void openAlpineSkiingPage(final String url) {
-        sportcheckSortedAlpineSkiingSteps.openPageByUrl(url);
+    @Given("user opened 'Alpine Skiing Page'")
+    public void openAlpineSkiingPage() {
+        final String commonUrl = propertyHelper.readProperty("sportchek.site.url");
+        sportcheckSortedAlpineSkiingSteps.openPageByPartialUrl(commonUrl);
     }
 
-    @When("user chooses 'Rating High to Low' in dropdown SORT BY")
-    public void chooseSortSelect(final String text) {
-        sportcheckSortedAlpineSkiingSteps.orderBySelect("Rating High to Low");
+    @When("user clicks Sort By dropdown")
+    public void clicksSortBy() {
+        sportcheckSortedAlpineSkiingSteps.clicksSortBy();
     }
 
-    @When("user chooses 'ATOMIC' brand at the product list")
-    public void chooseAtomic() {
-        sportcheckSortedAlpineSkiingSteps.chooseAtomic();
+    @When("user clicks 'Rating High to Low' in SORT BY dropdown")
+    public void chooseSortSelect() {
+        sportcheckSortedAlpineSkiingSteps.clicksBySelect();
     }
+
+//    @When("user chooses 'ATOMIC' brand at the product list")
+//    public void chooseAtomic() {
+//        sportcheckSortedAlpineSkiingSteps.chooseAtomic();
+//    }
 
     @Then("products are sorted by the number of stars")
     public void orderByNumberStars() {

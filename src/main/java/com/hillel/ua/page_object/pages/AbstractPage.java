@@ -1,6 +1,8 @@
 package com.hillel.ua.page_object.pages;
 
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.openqa.selenium.WebDriver;
 
 public class AbstractPage extends PageObject {
@@ -16,4 +18,12 @@ public class AbstractPage extends PageObject {
         final String scrollScript = "window.scrollTo(0, -100);"; //js code which has scroll
         getJavascriptExecutorFacade().executeScript(scrollScript); //метод который умеет выполнять /js code
     }
+
+    public String getSerenityPropertiesValues(){
+        EnvironmentVariables variables = SystemEnvironmentVariables.createEnvironmentVariables();
+        String baseurl  = variables.getProperty("webdriver.base.url");
+        System.out.println(baseurl);
+        return baseurl;
+    }
+
 }

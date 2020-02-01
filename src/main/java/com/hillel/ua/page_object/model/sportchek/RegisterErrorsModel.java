@@ -7,6 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class RegisterErrorsModel {
 
+    public RegisterErrorsModel() {}
+
     private String emailError;
     private String confirmEmailError;
     private String passwordError;

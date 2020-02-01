@@ -1,8 +1,10 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
 import com.hillel.ua.serenity.steps.sportchek.HeaderPanelSteps;
+import com.hillel.ua.serenity.steps.sportchek.ShoppingCartSteps;
 import com.hillel.ua.serenity.steps.sportchek.SportCheckMainPageSteps;
 import net.thucydides.core.annotations.Steps;
+import org.assertj.core.api.Assertions;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -16,9 +18,18 @@ public class ShoppingCartScenario {
     @Steps
     private HeaderPanelSteps headerPanelSteps;
 
+    @Steps
+    private ShoppingCartSteps shoppingCartSteps;
+
     @Given("user opened site, using next url: '$url'")
     public void openSite(final String url) {
         sportCheckMainPageSteps.openPage(url);
+    }
+
+    @Given("user opened 'Shopping Cart Page'")
+    public void openShoppingCartPage() {
+        final String commonUrl = "https://www.sportchek.ca";  //выносить в property (Reader)
+        shoppingCartSteps.openPageByPartialUrl(commonUrl);
     }
 
     @When("user moved the mouse to shopping cart")
@@ -33,5 +44,15 @@ public class ShoppingCartScenario {
 
         Assert.assertEquals("There is incorrect shopping cart message displayed!",
                 expectedShoppingCartMessage,actualShoppingCartMessage);
+    }
+
+    @Then("following empty cart message displayed: '$message'")
+    public void verifyEmptyCartMessage(final String emptyCartMessage) {
+
+        final String actualEmptyCartMessage = shoppingCartSteps.getEmptyCartMessage();
+
+        Assertions.assertThat(actualEmptyCartMessage) // title with site
+                .as("There is incorrect empty Shopping Cart message displayed!")
+                .isEqualTo(emptyCartMessage);  // we expect see
     }
 }

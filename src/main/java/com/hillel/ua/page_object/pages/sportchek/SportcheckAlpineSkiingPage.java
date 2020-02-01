@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 
 public class SportcheckAlpineSkiingPage extends AbstractPage {
 
-    private static final String SORT_SELECT_LOCATOR = ".//select[@data-module-type='FormDropdown']";
-    private static final String LIST_PRODUCTS = ".//div[@class='product-grid__list-item-height']";
+    private static final String SORT_SELECT_LOCATOR = "//select[@data-module-type='FormDropdown']"; //div[@class='dropdown dropdown_ready dropdown_selected']
+    private static final String LIST_PRODUCTS = "//div[@class='product-grid__list-item-height']";
+
+    private static final String ATOMIC_CHECKBOX = "//span[contains(text(),'ATOMIC (14)')]";
 
     public SportcheckAlpineSkiingPage(final WebDriver webDriver) {
         super(webDriver);
@@ -23,5 +25,9 @@ public class SportcheckAlpineSkiingPage extends AbstractPage {
                 .stream()
                 .map(item -> item.getText())
                 .collect(Collectors.toList());
+    }
+
+    public void chooseAtomic() {
+        findBy(ATOMIC_CHECKBOX).waitUntilClickable().click();
     }
 }

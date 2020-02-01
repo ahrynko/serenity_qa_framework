@@ -6,6 +6,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import java.util.List;
+
 public class SportcheckSortedAlpineSkiingScenario {
 
     @Steps
@@ -21,9 +23,19 @@ public class SportcheckSortedAlpineSkiingScenario {
         sportcheckSortedAlpineSkiingSteps.orderBySelect("Rating High to Low");
     }
 
+    @When("user chooses 'ATOMIC' brand at the product list")
+    public void chooseAtomic() {
+        sportcheckSortedAlpineSkiingSteps.chooseAtomic();
+    }
+
     @Then("products are sorted by the number of stars")
     public void orderByNumberStars() {
         sportcheckSortedAlpineSkiingSteps.getProducts();
+
+    }
+
+    @Then("products are only displayed with this brand: '$ATOMIC'")
+    public void retrievedItemList(final List<String> expectedSearchList) {
 
     }
 }

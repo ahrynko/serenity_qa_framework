@@ -1,6 +1,6 @@
 package com.hillel.ua.page_object.pages.sportchek;
 
-import com.hillel.ua.common.PartialUrl;
+import com.hillel.ua.common.data.PartialUrl;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 

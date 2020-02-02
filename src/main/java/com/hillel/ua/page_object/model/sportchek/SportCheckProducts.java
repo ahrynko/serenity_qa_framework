@@ -8,9 +8,6 @@ import org.jetbrains.annotations.NotNull;
 @AllArgsConstructor
 public class SportCheckProducts implements Comparable<SportCheckProducts> {
 
-    private static final String PRODUCT_TITLE_LOCATOR = ".//span[@class='product-title-text']";
-    private static final String RATING_VALUE_LOCATOR = ".//span[@class='rating__value']";
-
     private String title;
     private Integer number;
 

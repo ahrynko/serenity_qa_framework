@@ -1,10 +1,12 @@
 package com.hillel.ua.page_object.pages.sportchek;
 
 import com.hillel.ua.common.data.PartialUrl;
+import com.hillel.ua.page_object.model.sportchek.SportCheckProducts;
 import com.hillel.ua.page_object.pages.AbstractPage;
-import com.hillel.ua.page_object.panels.sportchek.SportCheckProductsPanel;
+import com.hillel.ua.page_object.panels.sportchek.FilterByPanel;
+import com.hillel.ua.page_object.panels.sportchek.ProductListPanel;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,16 +16,26 @@ public class SportcheckAlpineSkiingPage extends AbstractPage {
 
     private static final String SORT_SELECT_LOCATOR = "(//select[@data-module-type='FormDropdown']/option)[5]";
     private static final String LIST_PRODUCTS = "//div[@class='product-grid__list-item-height']";
-
     private static final String SORT_BY_LOCATOR = "//div[@class='dropdown dropdown_ready dropdown_selected']";
-    private static final String PRODUCT_lIST_PANEL = "//div[@class='product-listing__grid']";
+
+    private static final String PRODUCT_TITLE_LOCATOR = ".//span[@class='product-title-text']";
+    private static final String RATING_VALUE_LOCATOR = ".//span[@class='rating__value']";
+
+    //TODO
+    private static final String PRODUCT_lIST_PANEL = ".//div[@class='product-listing__grid']";
+    private static final String FILTER_BY_PANEL = ".//div[@class='product-listing__facets']";
+
 
     public SportcheckAlpineSkiingPage(final WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void orderBy(String text){   //метод сортировки по тексту
-      findBy(SORT_SELECT_LOCATOR).waitUntilVisible().getSelectedVisibleTextValue();
+    public FilterByPanel getFilterByPanel() {
+        return new FilterByPanel(findBy(FILTER_BY_PANEL), this);
+    }
+
+    public ProductListPanel getProductListPanel() {
+        return new ProductListPanel(findBy(PRODUCT_lIST_PANEL), this);
     }
 
     public void clicksSortBy() {
@@ -35,17 +47,15 @@ public class SportcheckAlpineSkiingPage extends AbstractPage {
         findBy(SORT_SELECT_LOCATOR).waitUntilVisible().click();
     }
 
-    public SportCheckProductsPanel getSportCheckProductsPanelpPanel() {//метод который отдаст модалку Popup
-        return new SportCheckProductsPanel(findBy(PRODUCT_lIST_PANEL), this);
-    }
 
-
-
-    public List<String> getProducts(){
+    public List<SportCheckProducts> getSportCheckProducts(){
         return findAll(LIST_PRODUCTS)
                 .stream()
-                .map(item -> item.getText())
-                .collect(Collectors.toList());
+                .map(product -> {
+                    String title = product.findBy(PRODUCT_TITLE_LOCATOR).getText();
+                    Integer number= Integer.valueOf(product.findBy(RATING_VALUE_LOCATOR).getAttribute("style"));
+                    return new SportCheckProducts(title, number);
+                }).collect(Collectors.toList());
     }
 
 }

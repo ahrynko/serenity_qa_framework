@@ -13,6 +13,6 @@ public class SportCheckProducts implements Comparable<SportCheckProducts> {
 
     @Override
     public int compareTo(SportCheckProducts anotherProduct) { //method сравнивания по полю number
-        return this.number - anotherProduct.number;
+        return this.number - anotherProduct.number;    // this.title.compareTo(anotherProduct.title);
     }
 }

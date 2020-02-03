@@ -23,7 +23,6 @@ public class SportcheckSortedAlpineSkiingScenario {
     public void openAlpineSkiingPage() {
         final String commonUrl = propertyHelper.readProperty("sportchek.site.url");
         sportcheckSortedAlpineSkiingSteps.openPageByPartialUrl(commonUrl);
-        logger.info(String.format("Opened following url '%s'",commonUrl));
     }
 
     @When("user clicks Sort By dropdown")
@@ -35,11 +34,5 @@ public class SportcheckSortedAlpineSkiingScenario {
     public void chooseSortSelect() {
         sportcheckSortedAlpineSkiingSteps.clicksBySelect();
         logger.info("User clicks to 'Rating High to Low'");
-    }
-
-    @Then("products are sorted by the number of stars")
-    public void orderByNumberStars() {
-        sportcheckSortedAlpineSkiingSteps.getProducts();
-
     }
 }

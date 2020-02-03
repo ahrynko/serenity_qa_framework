@@ -33,12 +33,4 @@ public class SportcheckSortedAlpineSkiingSteps extends ScenarioSteps {
     public void clicksBySelect() {
         sportcheckAlpineSkiingPage.clicksBySelect();
     }
-
-    @Step
-    public void getProducts() {
-        List<SportCheckProducts> sortedSportCheckItemsList = sportcheckAlpineSkiingPage.getSportCheckProducts();
-        ReflectionAssert.assertReflectionEquals("There is incorrect sorting found! ",
-                "unsorted", sortedSportCheckItemsList);
-    }
-
 }

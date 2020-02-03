@@ -15,13 +15,8 @@ import java.util.stream.Collectors;
 public class SportcheckAlpineSkiingPage extends AbstractPage {
 
     private static final String SORT_SELECT_LOCATOR = "(//select[@data-module-type='FormDropdown']/option)[5]";
-    private static final String LIST_PRODUCTS = "//div[@class='product-grid__list-item-height']";
     private static final String SORT_BY_LOCATOR = "//div[@class='dropdown dropdown_ready dropdown_selected']";
 
-    private static final String PRODUCT_TITLE_LOCATOR = ".//span[@class='product-title-text']";
-    private static final String RATING_VALUE_LOCATOR = ".//span[@class='rating__value']";
-
-    //TODO
     private static final String PRODUCT_lIST_PANEL = ".//div[@class='product-listing__grid']";
     private static final String FILTER_BY_PANEL = ".//div[@class='product-listing__facets']";
 
@@ -46,16 +41,4 @@ public class SportcheckAlpineSkiingPage extends AbstractPage {
     public void clicksBySelect() {
         findBy(SORT_SELECT_LOCATOR).waitUntilVisible().click();
     }
-
-
-    public List<SportCheckProducts> getSportCheckProducts(){
-        return findAll(LIST_PRODUCTS)
-                .stream()
-                .map(product -> {
-                    String title = product.findBy(PRODUCT_TITLE_LOCATOR).getText();
-                    Integer number= Integer.valueOf(product.findBy(RATING_VALUE_LOCATOR).getAttribute("style"));
-                    return new SportCheckProducts(title, number);
-                }).collect(Collectors.toList());
-    }
-
 }

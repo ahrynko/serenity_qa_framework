@@ -41,8 +41,4 @@ public class SportcheckSortedAlpineSkiingSteps extends ScenarioSteps {
                 "unsorted", sortedSportCheckItemsList);
     }
 
-    @Step
-    public List<String> getAlpineSkiingListAtomicText() {
-       return sportcheckAlpineSkiingPage.getListAtomicText();
-    }
 }

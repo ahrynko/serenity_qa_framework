@@ -1,8 +1,11 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
 import com.hillel.ua.page_object.pages.sportchek.SportcheckAlpineSkiingPage;
+import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
+
+import java.util.List;
 
 public class ProductListSteps extends ScenarioSteps {
 
@@ -12,4 +15,8 @@ public class ProductListSteps extends ScenarioSteps {
         this.sportcheckAlpineSkiingPage = pages.getPage(SportcheckAlpineSkiingPage.class);
     }
 
+    @Step
+    public List<String> getAlpineSkiingListAtomicText() {
+        return sportcheckAlpineSkiingPage.getProductListPanel().getListAtomicText();
+    }
 }

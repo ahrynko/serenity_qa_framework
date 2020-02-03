@@ -42,17 +42,4 @@ public class SportcheckSortedAlpineSkiingScenario {
         sportcheckSortedAlpineSkiingSteps.getProducts();
 
     }
-
-    @Then("products are only displayed with this brand: '$ATOMIC'")
-    public void retrievedItemList(final List<String> expectedSearchList) {
-
-        final List<String> actualSearchList = sportcheckSortedAlpineSkiingSteps.getAlpineSkiingListAtomicText();
-        Assert.assertFalse("There are not item found! ", actualSearchList.isEmpty());
-
-        actualSearchList.forEach(item -> {
-            Assert.assertTrue("There is not such item present! ",item.contains("Atomic"));
-        });
-        logger.info(actualSearchList);
-        logger.info(actualSearchList.size());
-    }
 }

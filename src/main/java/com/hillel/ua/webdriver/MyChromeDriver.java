@@ -1,5 +1,6 @@
 package com.hillel.ua.webdriver;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import net.thucydides.core.webdriver.DriverSource;
@@ -12,7 +13,8 @@ public class MyChromeDriver implements DriverSource {
     public WebDriver newDriver() {
         try {
             ChromeOptions capabilities = new ChromeOptions();
-            // Add
+            // Add  don't work
+            Cookie samplecookie = new Cookie("_gid", "tQeZ4R0WCHnjbHJJsUC7jVnK_9v1oPGUKzyweOncvbQLIru7N8PIGNneP4zJUspdVQ3NlQ");
 
             return new ChromeDriver(ChromeDriverService.createDefaultService(), capabilities);
         }

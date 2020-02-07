@@ -1,5 +1,6 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
+import com.hillel.ua.common.data.EnvironmentProperties;
 import com.hillel.ua.common.helper.PropertyHelper;
 import com.hillel.ua.serenity.steps.sportchek.HeaderPanelSteps;
 import com.hillel.ua.serenity.steps.sportchek.ShoppingCartSteps;
@@ -13,7 +14,7 @@ import org.junit.Assert;
 
 public class ShoppingCartScenario {
 
-    private PropertyHelper propertyHelper = new PropertyHelper();
+    private PropertyHelper propertyHelper = new PropertyHelper(); //delete
 
     @Steps
     private SportCheckMainPageSteps sportCheckMainPageSteps;
@@ -29,10 +30,10 @@ public class ShoppingCartScenario {
         sportCheckMainPageSteps.openPage(url);
     }
 
-    @Given("user opened 'Shopping Cart Page'")
-    public void openShoppingCartPage() {
-        // add PropertyHelper
-        final String commonUrl = propertyHelper.readProperty("atmosphere.site.url");
+    @Given("user opened 'Shopping Cart Page' by url: '$url'")
+    public void openShoppingCartPage(final EnvironmentProperties environmentProperties) {
+
+        final String commonUrl = environmentProperties.readProperty();
         shoppingCartSteps.openPageByPartialUrl(commonUrl);
     }
 

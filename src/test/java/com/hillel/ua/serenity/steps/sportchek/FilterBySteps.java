@@ -1,10 +1,11 @@
 package com.hillel.ua.serenity.steps.sportchek;
 
 import com.hillel.ua.page_object.pages.sportchek.SportcheckAlpineSkiingPage;
-import com.hillel.ua.page_object.pages.sportchek.SportchekMainPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
+
+import java.util.List;
 
 public class FilterBySteps extends ScenarioSteps {
 
@@ -19,4 +20,13 @@ public class FilterBySteps extends ScenarioSteps {
         sportcheckAlpineSkiingPage.getFilterByPanel().chooseAtomic();
     }
 
+    @Step
+    public void chooseTecnoPro() {
+        sportcheckAlpineSkiingPage.getFilterByPanel().chooseTecnoPro();
+    }
+
+    @Step
+    public void clickClearAllButton() {
+        sportcheckAlpineSkiingPage.getFilterByPanel().clickClearAllButton();
+    }
 }

@@ -21,7 +21,7 @@ public class RestApiScenario {
     private static final String EXPECTED_POST_DATA_KEY = "expected_post_data_key";
     private static final Integer EXPECTED_POST_ID = 1;
 
-    @BeforeScenario
+    @Given("user removes Id to Api Resources")
     public void deleteApiResources() {
 
         Logger.out.debug("! ----------- Removing Rest API Created Resources ---------------- !");

@@ -3,6 +3,7 @@ package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 import com.hillel.ua.logging.Logger;
 import com.hillel.ua.page_object.model.sportchek.SportCheckProducts;
 import com.hillel.ua.serenity.steps.sportchek.ProductListSteps;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import org.junit.Assert;
@@ -30,6 +31,19 @@ public class ProductListScenario  {
         logger.info(actualSearchList.size());
     }
 
+    @Then("products are filtered by the specified filter: '$TECNO PRO'")
+    public void retrievedProductList(final List<String> expectedProductList) {
+
+        final List<String> actualSearchList = productListSteps.getListTecnoProText();
+        Assert.assertFalse("There are not item found! ", actualSearchList.isEmpty());
+
+        actualSearchList.forEach(item -> {
+            Assert.assertTrue("There is not such item present! ",item.contains("Tecnopro"));
+        });
+        logger.info(actualSearchList);
+        logger.info(actualSearchList.size());
+    }
+
     @Then("products are sorted by the number of stars")
     public void orderByNumberStars() {
 
@@ -39,4 +53,17 @@ public class ProductListScenario  {
                 "unsorted", sortedSportCheckItemsList);
     }
 
+    @Then("all filters by product were reset")
+    public void retrievedProductListAfterReset() {
+
+        //transfer ---------session//
+//        final List<String> expectedProductList = productListSteps.getListAllProducts();
+//        Serenity.setSessionVariable("expectedProductList").to(expectedProductList);
+
+        final List<String> actualProductList = Serenity.sessionVariableCalled("expectedProductList");
+
+        ReflectionAssert.assertReflectionEquals("There are incorrect products displayed!",
+                expectedProductList, actualProductList);
+
+    }
 }

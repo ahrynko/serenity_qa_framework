@@ -7,6 +7,7 @@ So that I can achieve a business goal
 
 Scenario: Verify user is able to create new Post
 
+Given user removes Id to Api Resources
 Given user creates new 'Post', using API:
 | title              | author               | age |
 | Hello From JBehave | Test Automation User | 30  |

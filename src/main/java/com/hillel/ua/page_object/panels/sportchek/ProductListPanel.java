@@ -38,4 +38,17 @@ public class ProductListPanel extends AbstractPanel {
                 }).collect(Collectors.toList());
     }
 
+    public List<String> getListTecnoProText() {
+        return findAll(LIST_PRODUCTS_RESULT)
+                .stream()
+                .map(WebElementFacade::getText)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getListAllProducts() {
+        return findAll(LIST_PRODUCTS_RESULT)
+                .stream()
+                .map(WebElementFacade::getText)
+                .collect(Collectors.toList());
+    }
 }

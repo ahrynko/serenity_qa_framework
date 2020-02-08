@@ -1,15 +1,10 @@
 package com.hillel.ua.page_object.pages.sportchek;
 
 import com.hillel.ua.common.data.PartialUrl;
-import com.hillel.ua.page_object.model.sportchek.SportCheckProducts;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.page_object.panels.sportchek.FilterByPanel;
 import com.hillel.ua.page_object.panels.sportchek.ProductListPanel;
-import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebDriver;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @PartialUrl(value = "categories/shop-by-sport/alpine-skiing/ski-packages.html?lastVisibleProductNumber=22")
 public class SportcheckAlpineSkiingPage extends AbstractPage {

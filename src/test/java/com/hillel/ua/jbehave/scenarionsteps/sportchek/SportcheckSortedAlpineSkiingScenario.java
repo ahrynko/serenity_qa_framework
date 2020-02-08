@@ -1,19 +1,14 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
-import com.hillel.ua.common.helper.PropertyHelper;
+import com.hillel.ua.common.data.EnvironmentProperties;
 import com.hillel.ua.logging.Logger;
 import com.hillel.ua.serenity.steps.sportchek.SportcheckSortedAlpineSkiingSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.junit.Assert;
-
-import java.util.List;
 
 public class SportcheckSortedAlpineSkiingScenario {
 
-    private PropertyHelper propertyHelper = new PropertyHelper();
     private Logger logger = new Logger();
 
     @Steps
@@ -21,7 +16,8 @@ public class SportcheckSortedAlpineSkiingScenario {
 
     @Given("user opened 'Alpine Skiing Page'")
     public void openAlpineSkiingPage() {
-        final String commonUrl = propertyHelper.readProperty("sportchek.site.url");
+
+        final String commonUrl = EnvironmentProperties.SPORTCHEK_BASE_URL.readProperty();
         sportcheckSortedAlpineSkiingSteps.openPageByPartialUrl(commonUrl);
     }
 

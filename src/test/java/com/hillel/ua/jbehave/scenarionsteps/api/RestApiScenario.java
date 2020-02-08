@@ -37,17 +37,17 @@ public class RestApiScenario {
         final PostsDTO newPostsData = newPostInfo.getRowsAs(PostsDTO.class).get(0);
         final Response newPostResponse = postsApiSteps.createNewPost(newPostsData);
 
-        Serenity.setSessionVariable(EXPECTED_POST_DATA_KEY).to(newPostsData);
-        Serenity.setSessionVariable(CREATED_POST_KEY).to(newPostResponse);
+        Serenity.setSessionVariable(EXPECTED_POST_DATA_KEY).to(newPostsData); // положили в сессию табл.'newPostInfo' по полям, кроме id
+        Serenity.setSessionVariable(CREATED_POST_KEY).to(newPostResponse);  // положили (response)ответ в сессию
     }
 
     @Then("new post should be created")
     public void isNewPostCreated() {
 
-        final Response createdPostResponse = Serenity.sessionVariableCalled(CREATED_POST_KEY);
+        final Response createdPostResponse = Serenity.sessionVariableCalled(CREATED_POST_KEY); // достали (response)ответ из сессии
 
-        final PostsDTO actualPost = createdPostResponse.as(PostsDTO.class);
-        final PostsDTO expectedPost = Serenity.sessionVariableCalled(EXPECTED_POST_DATA_KEY);
+        final PostsDTO actualPost = createdPostResponse.as(PostsDTO.class); // распарсить json (response)ответ в объект PostsDTO
+        final PostsDTO expectedPost = Serenity.sessionVariableCalled(EXPECTED_POST_DATA_KEY); // достали из сессии табл.'newPostInfo' по полям
 
         final SoftAssertions softAssertions = new SoftAssertions();
 
@@ -55,15 +55,15 @@ public class RestApiScenario {
                 .as("Incorrect status code!")
                 .isEqualTo(201);
 
-        softAssertions.assertThat(actualPost.getTitle())
+        softAssertions.assertThat(actualPost.getTitle())     //сравнение по полям
                 .as("There is incorrect title!")
                 .isEqualTo(expectedPost.getTitle());
 
-        softAssertions.assertThat(actualPost.getAuthor())
+        softAssertions.assertThat(actualPost.getAuthor())    //сравнение по полям
                 .as("There is incorrect author!")
                 .isEqualTo(expectedPost.getAuthor());
 
-        softAssertions.assertThat(actualPost.getAge())
+        softAssertions.assertThat(actualPost.getAge())      //сравнение по полям
                 .as("There is incorrect age!")
                 .isEqualTo(expectedPost.getAge());
 

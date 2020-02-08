@@ -3,7 +3,8 @@ package com.hillel.ua.common.data;
 public enum EnvironmentProperties {  //can store constructor
 
     SPORTCHEK_BASE_URL("sportchek.base.url"),
-    GOOGLE_BASE_URL("google.base.url");
+    GOOGLE_BASE_URL("google.base.url"),
+    LOCAL_API_URL("local.api.url");
 
     private String propertyKey;
 

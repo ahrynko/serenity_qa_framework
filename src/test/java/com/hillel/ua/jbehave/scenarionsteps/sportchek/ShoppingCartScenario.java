@@ -1,7 +1,6 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
 import com.hillel.ua.common.data.EnvironmentProperties;
-import com.hillel.ua.common.helper.PropertyHelper;
 import com.hillel.ua.serenity.steps.sportchek.HeaderPanelSteps;
 import com.hillel.ua.serenity.steps.sportchek.ShoppingCartSteps;
 import com.hillel.ua.serenity.steps.sportchek.SportCheckMainPageSteps;
@@ -13,8 +12,6 @@ import org.jbehave.core.annotations.When;
 import org.junit.Assert;
 
 public class ShoppingCartScenario {
-
-    private PropertyHelper propertyHelper = new PropertyHelper(); //delete
 
     @Steps
     private SportCheckMainPageSteps sportCheckMainPageSteps;
@@ -59,5 +56,10 @@ public class ShoppingCartScenario {
         Assertions.assertThat(actualEmptyCartMessage) // title with site
                 .as("There is incorrect empty Shopping Cart message displayed!")
                 .isEqualTo(emptyCartMessage);  // we expect see
+    }
+
+    @Then("the product your added is in the shopping cart")
+    public void verifyAddToShoppingCart () {
+
     }
 }

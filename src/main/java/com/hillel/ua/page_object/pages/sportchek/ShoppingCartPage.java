@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 public class ShoppingCartPage extends AbstractPage {
 
     private static final String EMPTY_SHOPPING_CART_MESSAGE = "//div[@class='sc-product-list']/p";
+    private static final String SHOPPING_CART_PANEL = ".//div[@class='sc-product-list']";
+
 
     public ShoppingCartPage(final WebDriver webDriver) {
         super(webDriver);
@@ -16,4 +18,5 @@ public class ShoppingCartPage extends AbstractPage {
     public String  getEmptyShoppingCartMessage() {
         return findBy(EMPTY_SHOPPING_CART_MESSAGE).getText();
     }
+
 }

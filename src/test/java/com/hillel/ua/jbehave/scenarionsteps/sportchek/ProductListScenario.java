@@ -56,9 +56,9 @@ public class ProductListScenario  {
     @Then("all filters by product were reset")
     public void retrievedProductListAfterReset() {
 
-        //transfer ---------session//
-//        final List<String> expectedProductList = productListSteps.getListAllProducts();
-//        Serenity.setSessionVariable("expectedProductList").to(expectedProductList);
+        //transfer ---------session  to openAlpineSkiingPage---------//
+        final List<String> expectedProductList = productListSteps.getListAllProducts();
+        Serenity.setSessionVariable("expectedProductList").to(expectedProductList);
 
         final List<String> actualProductList = Serenity.sessionVariableCalled("expectedProductList");
 

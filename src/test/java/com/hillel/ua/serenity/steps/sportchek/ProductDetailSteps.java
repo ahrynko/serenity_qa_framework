@@ -14,10 +14,17 @@ public class ProductDetailSteps extends ScenarioSteps {
 
     public void chooseRandomSize() {
         columbiaBoysSandyShoresBoardshortPage.getProductDetailPanel().chooseSize();
-
     }
 
     public void clickAddToCartButton() {
         columbiaBoysSandyShoresBoardshortPage.getProductDetailPanel().clickAddToCartButton();
+    }
+
+    public String getRandomSizeText() {
+        return columbiaBoysSandyShoresBoardshortPage.getProductDetailPanel().getRandomSizeText();
+    }
+
+    public String getPageTitleText() {
+        return columbiaBoysSandyShoresBoardshortPage.getProductDetailPanel().getPageTitleText();
     }
 }

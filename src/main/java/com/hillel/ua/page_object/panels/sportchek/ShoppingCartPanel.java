@@ -7,11 +7,19 @@ import net.serenitybdd.core.pages.WebElementFacade;
 public class ShoppingCartPanel extends AbstractPanel {
 
     private static final String PRODUCT_TITLE_LOCATOR = ".//a[@class='sc-product__title-link']";
-    private static final String SIZE_ITEM_LOCATOR = ".//span[contains(text(),'XS')]";
+    private static final String SIZE_ITEM_LOCATOR = ".//span[contains(text(),'Size:')]";   //refactor //.span[contains(text(),'XS')]
 
 
     public ShoppingCartPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
         super(panelBaseLocation, driverDelegate);
+    }
+
+    public String getSizeItemText() {
+        return findBy(SIZE_ITEM_LOCATOR).waitUntilVisible().getText();
+    }
+
+    public String getTitleItemText() {
+        return findBy(PRODUCT_TITLE_LOCATOR).waitUntilVisible().getText();
     }
 
 }

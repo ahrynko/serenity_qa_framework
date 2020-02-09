@@ -1,11 +1,15 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
 import com.hillel.ua.common.data.EnvironmentProperties;
+import com.hillel.ua.logging.Logger;
 import com.hillel.ua.serenity.steps.sportchek.HeaderPanelSteps;
+import com.hillel.ua.serenity.steps.sportchek.ProductDetailSteps;
 import com.hillel.ua.serenity.steps.sportchek.ShoppingCartSteps;
 import com.hillel.ua.serenity.steps.sportchek.SportCheckMainPageSteps;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -21,6 +25,9 @@ public class ShoppingCartScenario {
 
     @Steps
     private ShoppingCartSteps shoppingCartSteps;
+
+    @Steps
+    private ProductDetailSteps productDetailSteps;
 
     @Given("user opened site, using next url: '$url'")
     public void openSite(final String url) {
@@ -61,5 +68,27 @@ public class ShoppingCartScenario {
     @Then("the product your added is in the shopping cart")
     public void verifyAddToShoppingCart () {
 
+        final String actualTitleItemText = shoppingCartSteps.getTitleItemText();
+        final String actualSizeItemText = shoppingCartSteps.getSizeItemText();
+
+        final String expectedTitleItemText = Serenity.sessionVariableCalled("expected_title");
+        final String expectedSizeItemText =  Serenity.sessionVariableCalled("expected_size");
+
+        final SoftAssertions softAssertions = new SoftAssertions();
+
+        softAssertions.assertThat(actualTitleItemText)
+                .as("There is incorrect title!")
+                .isEqualTo(expectedTitleItemText);
+
+        softAssertions.assertThat(actualSizeItemText)
+                .as("There is incorrect size!")
+                .isEqualTo(expectedSizeItemText);
+
+        softAssertions.assertAll();
+
+        Logger.out.info(actualTitleItemText);
+        Logger.out.info(expectedTitleItemText);
+        Logger.out.info(actualSizeItemText);
+        Logger.out.info(expectedSizeItemText);
     }
 }

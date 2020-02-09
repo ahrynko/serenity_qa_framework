@@ -25,4 +25,15 @@ public class ShoppingCartSteps extends ScenarioSteps {
         shoppingCartPage.openUrl(fullNavUrl);
     }
 
+    @Step
+    public String getSizeItemText() {
+        return shoppingCartPage.getShoppingCartPanel().getSizeItemText();
+    }
+
+    @Step
+    public String getTitleItemText() {
+        return shoppingCartPage.getShoppingCartPanel().getTitleItemText();
+    }
+
+
 }

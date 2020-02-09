@@ -1,6 +1,7 @@
 package com.hillel.ua.jbehave.scenarionsteps.sportchek;
 
 import com.hillel.ua.serenity.steps.sportchek.ProductDetailSteps;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.When;
 
@@ -12,12 +13,16 @@ public class ProductDetailScenario {
     @When("user chooses (random) size")
     public void chooseRandomSize() {
         productDetailSteps.chooseRandomSize();
+
+        final String expectedTitleItemText = productDetailSteps.getRandomSizeText();
+        final String expectedSizeItemText =  productDetailSteps.getPageTitleText();
+        Serenity.setSessionVariable("expected_title").to(expectedTitleItemText);
+        Serenity.setSessionVariable("expected_size").to(expectedSizeItemText);
     }
 
     @When("user clicks 'Add To Cart' button")
     public void clickAddToCartButton() {
         productDetailSteps.clickAddToCartButton();
-
     }
 
 }

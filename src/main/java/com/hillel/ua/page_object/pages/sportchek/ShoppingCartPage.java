@@ -2,6 +2,7 @@ package com.hillel.ua.page_object.pages.sportchek;
 
 import com.hillel.ua.common.data.PartialUrl;
 import com.hillel.ua.page_object.pages.AbstractPage;
+import com.hillel.ua.page_object.panels.sportchek.ShoppingCartPanel;
 import org.openqa.selenium.WebDriver;
 
 @PartialUrl(value = "shopping-cart.html")
@@ -13,6 +14,10 @@ public class ShoppingCartPage extends AbstractPage {
 
     public ShoppingCartPage(final WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public ShoppingCartPanel getShoppingCartPanel() {
+        return new ShoppingCartPanel(find(SHOPPING_CART_PANEL), this);
     }
 
     public String  getEmptyShoppingCartMessage() {

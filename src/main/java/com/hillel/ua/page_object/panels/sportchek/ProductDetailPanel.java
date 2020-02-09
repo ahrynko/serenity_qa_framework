@@ -9,10 +9,11 @@ import java.util.Random;
 public class ProductDetailPanel extends AbstractPanel {
 
     private static final String SIZE_ITEMS_LOCATOR = ".//div[@class='option-tiles']//a";
-    private static final String SIZE_ITEM_RANDOM_LOCATOR = ".//div[@class='product-detail__size dropdown-wrapper']//a[2]";
+    private static final String SIZE_ITEM_RANDOM_LOCATOR = ".//div[@class='product-detail__size dropdown-wrapper']//a[2]";  //refactor
     private static final String ADD_TO_CART_BUTTON_LOCATOR = ".//button[@class='add-cart product-detail__button product-detail__button-icon']";
-    private static final String PAGE_TITLE_LOCATOR = ".//h1[@class='global-page-header__title']";
 
+    private static final String PAGE_TITLE = ".//h1[@class='global-page-header__title']";
+    private static final String PAGE_SIZE = ".(//span[@class='option-tiles__item-title'])[2]"; //refactor
 
     public ProductDetailPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
         super(panelBaseLocation, driverDelegate);
@@ -32,5 +33,13 @@ public class ProductDetailPanel extends AbstractPanel {
 
     public void clickAddToCartButton() {
         findBy(ADD_TO_CART_BUTTON_LOCATOR).waitUntilClickable().click();
+    }
+
+    public String getRandomSizeText() {
+        return findBy(PAGE_SIZE).waitUntilVisible().getText();
+    }
+
+    public String getPageTitleText() {
+        return findBy(PAGE_TITLE).waitUntilVisible().getText();
     }
 }

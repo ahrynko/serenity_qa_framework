@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 public class ShoppingCartPanel extends AbstractPanel {
 
     private static final String PRODUCT_TITLE_LOCATOR = ".//a[@class='sc-product__title-link']";
-    private static final String SIZE_ITEM_LOCATOR = ".//span[contains(text(),'Size:')]";   //refactor //.span[contains(text(),'XS')]
+    private static final String SIZE_ITEM_LOCATOR = ".//span[contains(text(),'Size:')]";   //span[@class='sc-product__property__name']
 
 
     public ShoppingCartPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {

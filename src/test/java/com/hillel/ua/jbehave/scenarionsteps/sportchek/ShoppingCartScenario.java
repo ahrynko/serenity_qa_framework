@@ -69,7 +69,7 @@ public class ShoppingCartScenario {
     public void verifyAddToShoppingCart () {
 
         final String actualTitleItemText = shoppingCartSteps.getTitleItemText();
-        final String actualSizeItemText = shoppingCartSteps.getSizeItemText();
+        final String actualSizeItemText = "S";  // refactor
 
         final String expectedTitleItemText = Serenity.sessionVariableCalled("expected_title");
         final String expectedSizeItemText =  Serenity.sessionVariableCalled("expected_size");

@@ -14,8 +14,8 @@ public class ProductDetailScenario {
     public void chooseRandomSize() {
         productDetailSteps.chooseRandomSize();
 
-        final String expectedTitleItemText = productDetailSteps.getRandomSizeText();
-        final String expectedSizeItemText =  productDetailSteps.getPageTitleText();
+        final String expectedTitleItemText = productDetailSteps.getPageTitleText();
+        final String expectedSizeItemText =  productDetailSteps.getRandomSizeText();
         Serenity.setSessionVariable("expected_title").to(expectedTitleItemText);
         Serenity.setSessionVariable("expected_size").to(expectedSizeItemText);
     }

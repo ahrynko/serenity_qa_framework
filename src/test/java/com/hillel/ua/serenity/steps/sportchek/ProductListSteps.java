@@ -31,6 +31,7 @@ public class ProductListSteps extends ScenarioSteps {
         return sportcheckAlpineSkiingPage.getProductListPanel().getListTecnoProText();
     }
 
+    @Step
     public List<String> getListAllProducts() {
         return sportcheckAlpineSkiingPage.getProductListPanel().getListAllProducts();
     }

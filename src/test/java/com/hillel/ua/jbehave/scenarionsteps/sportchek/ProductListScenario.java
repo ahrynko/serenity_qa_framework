@@ -57,13 +57,14 @@ public class ProductListScenario  {
     public void retrievedProductListAfterReset() {
 
         //transfer ---------session  to openAlpineSkiingPage---------//
-        final List<String> expectedProductList = productListSteps.getListAllProducts();
-        Serenity.setSessionVariable("expectedProductList").to(expectedProductList);
 
-        final List<String> actualProductList = Serenity.sessionVariableCalled("expectedProductList");
+        final List<String> expectedListProducts = Serenity.sessionVariableCalled("expected_filters_before_reset");
+        final List<String> actualProductList = productListSteps.getListAllProducts();
 
         ReflectionAssert.assertReflectionEquals("There are incorrect products displayed!",
-                expectedProductList, actualProductList);
+                expectedListProducts, actualProductList);
 
+        logger.info(expectedListProducts);
+        logger.info(actualProductList);
     }
 }

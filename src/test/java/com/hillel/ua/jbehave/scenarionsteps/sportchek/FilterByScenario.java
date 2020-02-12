@@ -25,7 +25,8 @@ public class FilterByScenario {
     @When("user chooses 'TECNO PRO' filter brand at the product list")
     public void chooseTecnoPro() {
 
-        //TODO  scroll to top
+        productListSteps.clickTopButton();
+
         final List<String> expectedListProducts = productListSteps.getListAllProducts();
         Serenity.setSessionVariable("expected_filters_before_reset").to(expectedListProducts);
 
@@ -34,8 +35,10 @@ public class FilterByScenario {
 
     @Then("user clicks on the 'Clear All' button")
     public void clickClearAllButton() {
+
         filterBySteps.clickClearAllButton();
-        //TODO
+        productListSteps.moveToTop();
+
         final List<String> actualListProducts = productListSteps.getListAllProducts();
         Serenity.setSessionVariable("actual_filters_after_reset").to(actualListProducts);
     }

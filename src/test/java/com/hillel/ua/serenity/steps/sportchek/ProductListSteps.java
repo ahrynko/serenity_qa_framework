@@ -36,4 +36,12 @@ public class ProductListSteps extends ScenarioSteps {
         return sportcheckAlpineSkiingPage.getProductListPanel().getListAllProducts();
     }
 
+    @Step
+    public void clickTopButton() {
+        sportcheckAlpineSkiingPage.getProductListPanel().clickTopButton();
+    }
+
+    public void moveToTop() {
+        sportcheckAlpineSkiingPage.getProductListPanel().moveToTop();
+    }
 }

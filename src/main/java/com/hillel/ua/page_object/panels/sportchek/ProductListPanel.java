@@ -52,7 +52,7 @@ public class ProductListPanel extends AbstractPanel {
     public List<String> getListAllProducts() {
         return findAll(LIST_PRODUCTS_RESULT)
                 .stream()
-                .map(WebElementFacade::getText)
+                .map(WebElementFacade::getTextValue)
                 .limit(50)
                 .collect(Collectors.toList());
     }

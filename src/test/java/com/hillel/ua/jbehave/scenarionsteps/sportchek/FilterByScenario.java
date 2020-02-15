@@ -25,7 +25,7 @@ public class FilterByScenario {
     @When("user chooses 'TECNO PRO' filter brand at the product list")
     public void chooseTecnoPro() {
 
-        productListSteps.clickTopButton();
+//        productListSteps.clickTopButton();
 
         final List<String> expectedListProducts = productListSteps.getListAllProducts();
         Serenity.setSessionVariable("expected_filters_before_reset").to(expectedListProducts);

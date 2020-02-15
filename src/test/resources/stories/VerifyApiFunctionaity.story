@@ -23,7 +23,6 @@ Given user creates new 'Post', using API:
 When user update existing post, using following data:
 | title                                    | author         | age |
 | Java Programming Language. JDK Version 8 | Gerbert Shield | 51  |
-
 Then following post should be updated
 
 

@@ -6,6 +6,12 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import net.thucydides.core.annotations.Step;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.String.*;
+
 public class PostsApiSteps extends AbstractApiSteps {
 
     private static final String POSTS_API_PATH = "/posts";
@@ -15,7 +21,7 @@ public class PostsApiSteps extends AbstractApiSteps {
         return RestAssured.given()
                 .contentType(ContentType.JSON)      //work with json
                 .body(postRequest)        // автоматическое преобразование в json
-                .post(POSTS_API_PATH);
+                .post(POSTS_API_PATH);    //POST
     }
 
     @Step
@@ -23,4 +29,37 @@ public class PostsApiSteps extends AbstractApiSteps {
         RestAssured.delete(String.format("%s/%s", POSTS_API_PATH, postId));
     }
 
+    @Step
+    public List<PostsDTO> getAllPosts() {
+        return Arrays.asList(RestAssured.given()
+                .contentType(ContentType.JSON)
+                .get(POSTS_API_PATH)          //GET          (.asString() - получить String)
+                .as(PostsDTO[].class));  // .as- (если распартсить)
+    }
+
+    @Step
+    public PostsDTO getPostById(final Integer postId) {
+        return RestAssured.given()
+                .contentType(ContentType.JSON)
+                .get(format("%s/%s", POSTS_API_PATH, postId))  //GET
+                .as(PostsDTO.class);
+    }
+
+    @Step
+    public List<PostsDTO> getByQueryParams(final Map<String, String> params) {  //фильтр по параметрам
+        return Arrays.asList(RestAssured.given()
+                .queryParams(params)
+                .contentType(ContentType.JSON)
+                .get(POSTS_API_PATH)                //GET
+                .as(PostsDTO[].class));
+    }
+
+    @Step
+    public PostsDTO updatePostById(final PostsDTO newPostData, final Integer existingPostId) {
+        return RestAssured.given()
+                .body(newPostData)
+                .contentType(ContentType.JSON)
+                .put(format("%s/%s", POSTS_API_PATH, existingPostId))   //PUT
+                .as(PostsDTO.class);
+    }
 }

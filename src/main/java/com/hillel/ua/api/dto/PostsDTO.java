@@ -19,7 +19,7 @@ public class PostsDTO {
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("age")
+    @JsonProperty("age")   // @JsonIgnore - только в GET
     private Integer age;
 
 }

@@ -7,6 +7,7 @@ import com.hillel.ua.logging.Logger;
 import io.restassured.response.Response;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -14,11 +15,15 @@ import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 import org.unitils.reflectionassert.ReflectionAssert;
 
+import java.util.List;
+import java.util.Map;
+
 public class RestApiCommentsScenario {
 
     private static final String CREATED_POST_KEY = "created_post_key";    //POST (response)ответ
     private static final String EXPECTED_POST_DATA_KEY = "expected_post_data_key";   //POST (current table PostsDTO object)
     private static final String UPDATED_POST_DATA_KEY = "updated_post_data_key";   //PUT (update)
+    private static final String FILTERED_POSTS_BY_QUERY_PARAMS_KEY = "filtered_posts_by_query_params_key";  //GET (getByQueryParams)
 
     private static final Integer EXPECTED_POST_ID = 1;  //DELETE
 
@@ -55,6 +60,13 @@ public class RestApiCommentsScenario {
         Serenity.setSessionVariable(UPDATED_POST_DATA_KEY).to(updatedPost);
     }
 
+    @When("user filters retrieved Comments  by next filter params: $filterParams")
+    public void filterAllPostsByQueryParameters(final ExamplesTable filterParams) {
+        final Map<String, String> queryParams = filterParams.getRow(0);
+        final List<CommentsDTO> filteredByQueryParams = commentsApiSteps.getByQueryParams(queryParams);
+        Serenity.setSessionVariable(FILTERED_POSTS_BY_QUERY_PARAMS_KEY).to(filteredByQueryParams);
+    }
+
     @Then("new POST should be created")
     public void isNewPostCreated() {
 
@@ -89,5 +101,28 @@ public class RestApiCommentsScenario {
         //Сравили два Post Objects (после PUT, после GET)
         ReflectionAssert.assertReflectionEquals("There is incorrect 'updated' Post!",
                 expectedPostData, actualPostData);
+    }
+
+    @Then("each filtered POST should contains only the following data: $filteredData")
+    public void commentsFilteredCorrectly(final ExamplesTable filteredData) {
+
+        final Map<String, String> expectedFilteredComments = filteredData.getRow(0);
+
+        final List<CommentsDTO> actualFilteredComments = Serenity.sessionVariableCalled(FILTERED_POSTS_BY_QUERY_PARAMS_KEY);
+
+        Assertions.assertThat(actualFilteredComments)
+                .as("There are no filtered Comments retrieved!")
+                .isNotEmpty();
+
+        actualFilteredComments.forEach(post -> {
+
+            Assertions.assertThat(post.getBody())
+                    .as("There is incorrect Body!")
+                    .isEqualTo(expectedFilteredComments.get("body"));
+
+            Assertions.assertThat(post.getGender())
+                    .as("There is incorrect Gender!")
+                    .isEqualTo(expectedFilteredComments.get("gender"));
+        });
     }
 }

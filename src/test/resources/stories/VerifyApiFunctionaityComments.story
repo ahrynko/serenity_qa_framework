@@ -22,3 +22,22 @@ When user update existing post to comments, using following data:
 | body                               | author       | gender |
 | Learning Java Programming Language | Kathy Sierra | W      |
 Then current following post should be updated
+
+Scenario: Verify user is able to filter all Comments, by filter data ( 3 POST + GET (getByQueryParams))
+
+Given user creates new 'POST', using API:
+| body         | author     | gender |
+| Das sind wir | Ihrem Haus | W      |
+And user creates new 'POST', using API:
+| body                                                                    | author               | gender |
+| Verbringen Sie und Ihre Familie herrliche Sommertage im schönen Allgäu. | FERIENDOMIZIL MÜLLER | M      |
+And user creates new 'POST', using API:
+| body                                                                    | author               | gender |
+| Verbringen Sie und Ihre Familie herrliche Sommertage im schönen Allgäu. | FERIENDOMIZIL MÜLLER | M      |
+
+When user filters retrieved Comments  by next filter params:
+| body                                                                    | gender |
+| Verbringen Sie und Ihre Familie herrliche Sommertage im schönen Allgäu. | M      |
+Then each filtered POST should contains only the following data:
+| body                                                                    | gender |
+| Verbringen Sie und Ihre Familie herrliche Sommertage im schönen Allgäu. | M      |

@@ -41,3 +41,14 @@ When user filters retrieved Comments  by next filter params:
 Then each filtered POST should contains only the following data:
 | body                                                                    | gender |
 | Verbringen Sie und Ihre Familie herrliche Sommertage im schönen Allgäu. | M      |
+
+
+Scenario: Verify user is able to update existing Post  to comments (POST + PUT + GET)
+
+Given user creates new 'POST', using API:
+| body   | author       | gender |
+| TESTER | Mark Zahariy | M      |
+When user update existing post to comments, using following data:
+| body                               | author     |
+| Learning Java Programming Language | Kathy Star |
+Then current following post should be updated

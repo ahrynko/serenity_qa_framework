@@ -1,7 +1,6 @@
 package com.hillel.ua.api;
 
 import com.hillel.ua.api.dto.CommentsDTO;
-import com.hillel.ua.api.dto.PostsDTO;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

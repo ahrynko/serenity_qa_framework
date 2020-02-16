@@ -2,7 +2,6 @@ package com.hillel.ua.jbehave.scenarionsteps.api;
 
 import com.hillel.ua.api.CommentsApiSteps;
 import com.hillel.ua.api.dto.CommentsDTO;
-import com.hillel.ua.api.dto.PostsDTO;
 import com.hillel.ua.logging.Logger;
 import io.restassured.response.Response;
 import net.serenitybdd.core.Serenity;

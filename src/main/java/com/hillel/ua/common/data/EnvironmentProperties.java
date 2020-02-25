@@ -4,7 +4,8 @@ public enum EnvironmentProperties {  //can store constructor
 
     SPORTCHEK_BASE_URL("sportchek.base.url"),
     GOOGLE_BASE_URL("google.base.url"),
-    LOCAL_API_URL("local.api.url");
+    LOCAL_API_URL("local.api.url"),
+    WELTRADE_BASE_URL("weltrade.base.url");
 
     private String propertyKey;
 

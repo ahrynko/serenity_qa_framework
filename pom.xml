@@ -36,9 +36,17 @@
         <commons-lang.version>3.9</commons-lang.version>
         <rest-assured.version>4.2.0</rest-assured.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
+        <jdbc-driver.version>8.2.1.jre8</jdbc-driver.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>${jdbc-driver.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

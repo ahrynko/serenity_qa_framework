@@ -2,9 +2,10 @@ package com.hillel.ua.db;
 
 import com.hillel.ua.common.data.PropertiesReader;
 import com.hillel.ua.logging.Logger;
-
+import org.apache.commons.lang3.StringUtils;
+import java.lang.reflect.Field;
 import java.sql.*;
-import java.util.Objects;
+import java.util.*;
 
 public class DataBaseUtils {
 
@@ -34,17 +35,78 @@ public class DataBaseUtils {
 
     public static void executeQuery(final String query) {  // выполнить запрос
         try {
-            if (Objects.isNull(connection) || connection.isClosed()) {
-                Logger.out.debug("Connection is closed. Perform reconnecting!");
-                initConnection();
-            }
-            final Statement statement = connection.createStatement();  //объект Statement (позволяет выполнить запрос к БД)
+            final Statement statement = tryToConnect();
+//            final Statement statement = connection.createStatement();  //объект Statement (позволяет выполнить запрос к БД)
             Logger.out.debug(String.format("Connection is established. Executing following query [%s]!", query));
-            final ResultSet resultSet = statement.executeQuery(query); //объект ResultSet (данные которые пришли с таблицы) -получить
+            statement.executeUpdate(query);  // возврат true or false
+//            final ResultSet resultSet = statement.executeQuery(query); //объект ResultSet (данные которые пришли с таблицы) -получить
             Logger.out.debug(String.format("Following query [%s] is successfully executed!", query));
         } catch (final SQLException e) {
             throw new IllegalStateException("Unable to execute query!", e);
         }
     }
+
+    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) {
+        final List<Map<String, String>> results = executeRetrieve(query);
+        for (final Map<String, String> columnData : results) {
+            final List<Field> fields = retrieveAllFields(returnType);
+            for (final Field field : fields) {
+                final String columnName = field.getAnnotation(ColumnName.class).name();
+                columnData.forEach((key, value) -> {
+                    if (StringUtils.equals(key, columnName)) {
+                        field.setAccessible(true);
+                        try {
+                            field.set(returnType, value);
+                        } catch (final IllegalAccessException e) {
+                            throw new IllegalStateException("Unable to set value into the field!", e);
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    private static <T> List<Field> retrieveAllFields(final Class<T> returnType) {
+        return Arrays.asList(returnType.getDeclaredFields());
+    }
+
+    public static List<Map<String, String>> executeRetrieve(final String query) { //вычитать данные
+        final List<Map<String, String>> rowsData = new ArrayList<>(); // Лист моих данных
+
+        try {
+
+            final Statement statement = tryToConnect();
+            final ResultSet resultSet = statement.executeQuery(query); //Данные о таблице (в том числе и служебная информация: ко-во колонок, строк. и тд)
+            final ResultSetMetaData resultSetMetaData = resultSet.getMetaData();  //Служебные данные о таблице в которой мы получили из ResultSet
+            final Integer columnCount = resultSetMetaData.getColumnCount(); //Получили количество колонок в таблице (распарсили)
+
+            while (resultSet.next()) {
+
+                final Map<String, String> columnData = new HashMap<>();  // для каждой строчки
+
+                for (Integer columnIndex = 1; columnIndex < columnCount; columnIndex++) { //Цикл по колонкам
+                    final String columnName = resultSetMetaData.getColumnName(columnIndex);  //Имя колонки
+                    final String columnValue = resultSet.getString(columnIndex);  // Значение колонки
+                    columnData.put(columnName, columnValue); //положить в мапу
+                }
+
+                rowsData.add(columnData);
+            }
+
+        } catch (final SQLException e) {
+            throw new IllegalStateException("Unable to execute query!", e);
+        }
+
+        return rowsData;
+    }
+
+    private static Statement tryToConnect() throws SQLException {
+        if (Objects.isNull(connection) || connection.isClosed()) {
+            Logger.out.debug("Connection is closed. Perform reconnecting!");
+            initConnection();
+        }
+        return connection.createStatement();
+    }
+
 }
 

@@ -46,15 +46,15 @@ public class DataBaseUtils {
         }
     }
 
-    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) {
-        final List<Map<String, String>> results = executeRetrieve(query);
-        for (final Map<String, String> columnData : results) {
-            final List<Field> fields = retrieveAllFields(returnType);
+    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) { // Class<T> returnType -любой тип данных который object
+        final List<Map<String, String>> results = executeRetrieve(query); // Лист -->и  распарсить в список моих объектов
+        for (final Map<String, String> columnData : results) {  // columnData -key(name DB)
+            final List<Field> fields = retrieveAllFields(returnType); // получил список полей
             for (final Field field : fields) {
                 final String columnName = field.getAnnotation(ColumnName.class).name();
                 columnData.forEach((key, value) -> {
                     if (StringUtils.equals(key, columnName)) {
-                        field.setAccessible(true);
+                        field.setAccessible(true);  // разрешить запись в приватное поле (Students)
                         try {
                             field.set(returnType, value);
                         } catch (final IllegalAccessException e) {
@@ -66,12 +66,12 @@ public class DataBaseUtils {
         }
     }
 
-    private static <T> List<Field> retrieveAllFields(final Class<T> returnType) {
-        return Arrays.asList(returnType.getDeclaredFields());
+    private static <T> List<Field> retrieveAllFields(final Class<T> returnType) {  // получить все поля из моего объекта (Students)
+        return Arrays.asList(returnType.getDeclaredFields());  // масив полей моего объекта
     }
 
     public static List<Map<String, String>> executeRetrieve(final String query) { //вычитать данные
-        final List<Map<String, String>> rowsData = new ArrayList<>(); // Лист моих данных
+        final List<Map<String, String>> rowsData = new ArrayList<>(); // Лист моих данных(список)
 
         try {
 
@@ -80,9 +80,9 @@ public class DataBaseUtils {
             final ResultSetMetaData resultSetMetaData = resultSet.getMetaData();  //Служебные данные о таблице в которой мы получили из ResultSet
             final Integer columnCount = resultSetMetaData.getColumnCount(); //Получили количество колонок в таблице (распарсили)
 
-            while (resultSet.next()) {
+            while (resultSet.next()) {  // пока есть строки(true) - вычитываем
 
-                final Map<String, String> columnData = new HashMap<>();  // для каждой строчки
+                final Map<String, String> columnData = new HashMap<>();  // для каждой строчки создаем мапу
 
                 for (Integer columnIndex = 1; columnIndex < columnCount; columnIndex++) { //Цикл по колонкам
                     final String columnName = resultSetMetaData.getColumnName(columnIndex);  //Имя колонки
@@ -90,7 +90,7 @@ public class DataBaseUtils {
                     columnData.put(columnName, columnValue); //положить в мапу
                 }
 
-                rowsData.add(columnData);
+                rowsData.add(columnData);  //добавить данные в лист(список)
             }
 
         } catch (final SQLException e) {

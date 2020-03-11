@@ -37,6 +37,7 @@
         <rest-assured.version>4.2.0</rest-assured.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
         <jdbc-driver.version>8.2.1.jre8</jdbc-driver.version>
+        <jsoup-java-parser.version>1.13.1</jsoup-java-parser.version>
     </properties>
 
     <dependencies>
@@ -46,6 +47,12 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>${jdbc-driver.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup-java-parser.version}</version>
         </dependency>
 
         <dependency>

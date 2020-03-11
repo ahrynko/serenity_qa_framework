@@ -4,6 +4,7 @@ import com.hillel.ua.common.data.PropertiesReader;
 import com.hillel.ua.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.*;
 
@@ -46,25 +47,71 @@ public class DataBaseUtils {
         }
     }
 
-    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) { // Class<T> returnType -любой тип данных который object
-        final List<Map<String, String>> results = executeRetrieve(query); // Лист -->и  распарсить в список моих объектов
-        for (final Map<String, String> columnData : results) {  // columnData -key(name DB)
-            final List<Field> fields = retrieveAllFields(returnType); // получил список полей
-            for (final Field field : fields) {
-                final String columnName = field.getAnnotation(ColumnName.class).name();
-                columnData.forEach((key, value) -> {
-                    if (StringUtils.equals(key, columnName)) {
-                        field.setAccessible(true);  // разрешить запись в приватное поле (Students)
+//    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) { // Class<T> returnType -любой тип данных который object
+//        final List<Map<String, String>> results = executeRetrieve(query); //Вычитали все данные из таблицы           Лист -->и  распарсить в список моих объектов
+//        for (final Map<String, String> columnData : results) {  // columnData -key(name DB)
+//            final List<Field> fields = retrieveAllFields(returnType); // получил список полей
+//            for (final Field field : fields) {
+//                final String columnName = field.getAnnotation(ColumnName.class).name();
+//                columnData.forEach((key, value) -> {
+//                    if (StringUtils.equals(key, columnName)) {
+//                        field.setAccessible(true);  // разрешить запись в приватное поле (Students)
+//                        try {
+//                            field.set(returnType, value);
+//                        } catch (final IllegalAccessException e) {
+//                            throw new IllegalStateException("Unable to set value into the field!", e);
+//                        }
+//                    }
+//                });
+//            }
+//        }
+//    }
+
+    public static <T> List<T> executeRetrieveAsListObjects(final String query, final Class<T> returnType) {//
+
+        final List<Map<String, String>> results = executeRetrieve(query); //Вычитали все данные из таблицы
+
+        final List<T> records = new ArrayList<>(); //Создали коллекцию которая будет хранить считаные данные из базы данных в виде листа обджектов
+
+        try {
+            for (final Map<String, String> row : results) { //Идем в цикле по строкам, считаным из базы данных
+
+                final T instance = returnType.getDeclaredConstructor().newInstance(); //Для каждой строки из базы нам надо создать новый обджект.
+                //getDeclaredConstructor() - получаем дефолтный конструктор из обджекта
+                //newInstance() - создаем новый обджект. Равносильно A a = new A(); ,
+                // где new A(); - это newInstance() только через рефлексию
+
+                final List<Field> fields = Arrays.asList(instance.getClass().getDeclaredFields()); //Получаем список полей нашего обджекта,
+                // для того чтоб сравнить каждое из них и записать туда значение
+                fields.forEach(field -> { //Итерируемся по списку полей
+                    final String objectFieldName = field.getAnnotation(ColumnName.class).name(); //Если в текущей строке, которую мы вычитали из базы данных
+                    // и положили в коллецию *results* есть поле
+                    // (ключ) с именем нашего поля (полученого с аннотации  ColumnName.class.name())
+                    if (row.containsKey(objectFieldName)) {
+
+                        field.setAccessible(true); // Тогда разрешаем запись в это поле для нашего обджектаб путем установки флага в режим тру
+
                         try {
-                            field.set(returnType, value);
+
+                            final String dbColumnValue = row.get(objectFieldName); // Получаем знаение из колонки
+
+                            field.set(instance, dbColumnValue); // Пишем это значение в поле нашего обджекта
+
                         } catch (final IllegalAccessException e) {
-                            throw new IllegalStateException("Unable to set value into the field!", e);
+
+                            throw new IllegalStateException("An Exception occurred!", e); //Если что-то пойдет не так, то выбросим ексепшин
                         }
                     }
-                });
+                }); //И так для каждой записи в базе данных
+
+                records.add(instance); //Добавляем каждый заполненый данными из баз обджект в коллекцию
             }
+        } catch (final InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new IllegalStateException("An Exception occurred!", e);
         }
+        return records;
     }
+
 
     private static <T> List<Field> retrieveAllFields(final Class<T> returnType) {  // получить все поля из моего объекта (Students)
         return Arrays.asList(returnType.getDeclaredFields());  // масив полей моего объекта

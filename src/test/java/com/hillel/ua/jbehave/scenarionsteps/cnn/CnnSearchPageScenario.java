@@ -45,9 +45,9 @@ public class CnnSearchPageScenario {
         RestAssured.baseURI = "https://edition.cnn.com";
         final String ccnHtmlCode = RestAssured.get("/search?size=10&q=China").asString();
 
-        final List<Article> articleList = cnnSearchPageSteps.parseCnnTextBlocks(ccnHtmlCode);
+//        final List<Article> articleList = cnnSearchPageSteps.parseCnnTextBlocks(ccnHtmlCode);
 
-        Serenity.setSessionVariable("actual_article_list").to(articleList);
+//        Serenity.setSessionVariable("actual_article_list").to(articleList);
 
 //        articleList.forEach(line -> Logger.out.info(String.format("** [Text Block] ** %s", line)));
     }

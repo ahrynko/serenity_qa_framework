@@ -45,7 +45,7 @@ public class CnnSearchPage extends AbstractPage {
 
     }
 
-    public List<Article> parseCnnTextBlocks(final String htmlCode) {
+   /* public List<Article> parseCnnTextBlocks(final String htmlCode) {
         final Document bbcDocument = Jsoup.parse(htmlCode);
         final List<String> texts = new ArrayList<>();  // ref
         final Elements textBlocks = bbcDocument.select(".dove-item span.title-link__title-text");
@@ -54,6 +54,6 @@ public class CnnSearchPage extends AbstractPage {
             texts.add(text);
         }
         return  texts;  //ref
-    }
+    }*/
 
 }

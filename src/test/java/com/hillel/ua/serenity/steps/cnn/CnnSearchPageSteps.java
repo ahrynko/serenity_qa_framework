@@ -1,6 +1,6 @@
 package com.hillel.ua.serenity.steps.cnn;
 
-import com.hillel.ua.page_object.model.cnn.Article;
+import com.hillel.ua.page_object.model.cnn.ArticleDTO;
 import com.hillel.ua.page_object.pages.cnn.CnnSearchPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
@@ -17,12 +17,8 @@ public class CnnSearchPageSteps extends ScenarioSteps {
     }
 
     @Step
-    public List<Article> getArticleItems() {
+    public List<ArticleDTO> getArticleItems() {
         return cnnSearchPage.getArticleItemsUsingStreamApi();
     }
 
-   /* @Step
-    public List<Article> parseCnnTextBlocks(final String htmlCode) {
-        return cnnSearchPage.parseCnnTextBlocks(htmlCode);
-    }*/
 }

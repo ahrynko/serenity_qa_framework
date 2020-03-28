@@ -21,4 +21,13 @@ public class CnnSearchPageSteps extends ScenarioSteps {
         return cnnSearchPage.getArticleItemsUsingStreamApi();
     }
 
+    @Step
+    public List<ArticleDTO> parseCnnPageSources(final String pageSources) {
+        return cnnSearchPage.parseCnnPageSources(pageSources);
+    }
+
+    @Step
+    public String getPageHtmlSourceCode() {
+        return cnnSearchPage.getPageHtmlSourceCode();
+    }
 }

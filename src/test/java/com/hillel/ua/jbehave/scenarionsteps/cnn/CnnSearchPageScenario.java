@@ -1,5 +1,6 @@
 package com.hillel.ua.jbehave.scenarionsteps.cnn;
 
+import com.hillel.ua.logging.Logger;
 import com.hillel.ua.page_object.model.cnn.ArticleDTO;
 import com.hillel.ua.serenity.steps.cnn.CnnSearchPageSteps;
 import com.hillel.ua.web_services.RestTemplate;
@@ -59,4 +60,14 @@ public class CnnSearchPageScenario {
 
     }
 
+    @Then("user parsed and printed the text of each article in the console")
+    public void parseAndPrintCnnTextBlocks() {
+
+        final String pageSources = cnnSearchPageSteps.getPageHtmlSourceCode(); //получить Html
+
+        final List<ArticleDTO> articles = cnnSearchPageSteps.parseCnnPageSources(pageSources);  //expected results
+
+        articles.forEach(article -> Logger.out.info(String.format("** [Text Block] ** %s", article)));
+
+    }
 }

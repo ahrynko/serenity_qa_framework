@@ -3,6 +3,9 @@ package com.hillel.ua.page_object.pages.cnn;
 import com.hillel.ua.page_object.model.cnn.ArticleDTO;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,6 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CnnSearchPage extends AbstractPage {
+
+    private WebDriver webDriver;
 
     private static final String LIST_SEARCH_RESULT = "//div[@class='cnn-search__result cnn-search__result--article']";
     private static final String TITLE_ARTICLE = ".//div[@class='cnn-search__result-contents']/h3/a";
@@ -40,4 +45,19 @@ public class CnnSearchPage extends AbstractPage {
 
     }
 
+    public String getPageHtmlSourceCode() {
+        return webDriver.getPageSource();  // возврат Html
+    }
+
+    public List<ArticleDTO> parseCnnPageSources(final String pageSources) {
+        final Document cnnArticles = Jsoup.parse(pageSources);  // разпаршен Html в Document
+        final Elements articleBlocks = cnnArticles.select("cnn-search__result cnn-search__result--article");  //10 (collection)
+        return articleBlocks.stream()
+                .map(articleBlock -> {  //переменная
+                    final String title = articleBlock.selectFirst("h3 a[href]").text();
+                    final String body = articleBlock.selectFirst(".cnn-search__result-body").text();
+                    return new ArticleDTO(title, body);
+                })
+                .collect(Collectors.toList());
+    }
 }

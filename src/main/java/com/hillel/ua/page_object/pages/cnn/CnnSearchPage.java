@@ -16,10 +16,9 @@ public class CnnSearchPage extends AbstractPage {
 
     private WebDriver webDriver;
 
-    private static final String LIST_SEARCH_RESULT = "//div[@class='cnn-search__result cnn-search__result--article']";
+    private static final String LIST_SEARCH_RESULT = "//div[@class='cnn-search__result cnn-search__result--article' or (@class='cnn-search__result cnn-search__result--gallery') or (@class='cnn-search__result cnn-search__result--video')]";
     private static final String TITLE_ARTICLE = ".//div[@class='cnn-search__result-contents']/h3/a";
-    private static final String BODY_ARTICLE = ".//div[contains(text(),'China')]";
-
+    private static final String BODY_ARTICLE = ".//div[@class='cnn-search__result-contents']/div[2]";
 
     public CnnSearchPage(final WebDriver webDriver) {
         super(webDriver);

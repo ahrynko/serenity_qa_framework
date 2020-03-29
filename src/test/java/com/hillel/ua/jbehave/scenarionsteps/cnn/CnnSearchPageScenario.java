@@ -4,6 +4,7 @@ import com.hillel.ua.logging.Logger;
 import com.hillel.ua.page_object.model.cnn.ArticleDTO;
 import com.hillel.ua.serenity.steps.cnn.CnnSearchPageSteps;
 import com.hillel.ua.web_services.RestTemplate;
+import io.restassured.RestAssured;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
@@ -36,7 +37,6 @@ public class CnnSearchPageScenario {
         /*Article firstExpected = actualArticleList.get(0);  // get 1 element
         System.out.println(firstExpected.getTitle());
         System.out.println(firstExpected.getBody());*/
-
     }
 
     @When("user executed Rest Request with the word '$animals'")
@@ -47,6 +47,21 @@ public class CnnSearchPageScenario {
         final List<ArticleDTO> actualArticleList = restTemplate.retrieveArticlesFromApi();
         Serenity.setSessionVariable("actual_article_list").to(actualArticleList);
 
+    }
+
+    @When("user retrieved all articles to list with site")
+    public void retrievedAllArticles() {
+
+        final List<ArticleDTO> expectedAllArticles = cnnSearchPageSteps.getAllArticles();
+        Serenity.setSessionVariable("expected_all_articles").to(expectedAllArticles);
+    }
+
+    @When("user printed the text of each articles in the console with site")
+    public void PrintArticlesTextBlocksSite() {
+
+        final List<ArticleDTO> expectedAllArticles = Serenity.sessionVariableCalled("expected_all_articles");
+        expectedAllArticles.forEach(articleSite -> Logger.out.info(String.format("** [Text Block Site Title] ** %s\n ** [Text Block Site Body] ** %s\n",
+                articleSite.getTitle(), articleSite.getBody())));
     }
 
     @Then("compared two List with site and Rest Request")
@@ -60,14 +75,15 @@ public class CnnSearchPageScenario {
 
     }
 
-    @Then("user parsed and printed the text of each article in the console")
+    @Then("user parsed and printed the text of each article in the console with Jsoup library")
     public void parseAndPrintCnnTextBlocks() {
 
-        final String pageSources = cnnSearchPageSteps.getPageHtmlSourceCode(); //получить Html
+        RestAssured.baseURI = "https://edition.cnn.com";
+        final String pageSources = RestAssured.get("/search?q=covid").asString();
+        final List<ArticleDTO> actualAllArticles  = cnnSearchPageSteps.parseCnnPageSources(pageSources);
 
-        final List<ArticleDTO> articles = cnnSearchPageSteps.parseCnnPageSources(pageSources);  //expected results
-
-        articles.forEach(article -> Logger.out.info(String.format("** [Text Block] ** %s", article)));
+        actualAllArticles.forEach(article -> Logger.out.info(String.format("** [Text Block Title] ** %s\n ** [Text Block Body] ** %s\n",
+                article.getTitle(), article.getBody())));
 
     }
 }

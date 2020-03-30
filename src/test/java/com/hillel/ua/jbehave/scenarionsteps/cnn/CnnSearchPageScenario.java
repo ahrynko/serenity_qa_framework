@@ -21,26 +21,12 @@ public class CnnSearchPageScenario {
     @When("user retrieved items to list with site")
     public void retrievedItemList() {
 
-        final List<ArticleDTO> expectedArticleList = cnnSearchPageSteps.getArticleItems();  //refactor
-
-        //перевести поле объекта в стринг
-    /*    ArticleDTO aaa = actualArticleList.get(0);
-                aaa.getTitle();*/
-
-        /*actualArticleList.toString();  //ref
-        actualArticleList.toArray();     //ref
-        System.out.println(actualArticleList.toArray());  //ref
-        System.out.println(actualArticleList.toString());  //ref*/
-
+        final List<ArticleDTO> expectedArticleList = cnnSearchPageSteps.getArticleItems();
         Serenity.setSessionVariable("expected_article_list").to(expectedArticleList);
-
-        /*Article firstExpected = actualArticleList.get(0);  // get 1 element
-        System.out.println(firstExpected.getTitle());
-        System.out.println(firstExpected.getBody());*/
     }
 
-    @When("user executed Rest Request with the word '$animals'")
-    public void getRestRequest(final String animals) {
+    @When("user executed Rest Request with the same word")
+    public void getRestRequest() {
 
         RestTemplate restTemplate = new RestTemplate();
                                                                                    // refactor
@@ -67,8 +53,8 @@ public class CnnSearchPageScenario {
     @Then("compared two List with site and Rest Request")
     public void verifyCompareLists() {
 
-        final List<ArticleDTO> expectedArticleList = Serenity.sessionVariableCalled("expected_article_list"); //link to    //refactor
-        final List<ArticleDTO> actualArticleList = Serenity.sessionVariableCalled("actual_article_list"); //link to    //refactor
+        final List<ArticleDTO> expectedArticleList = Serenity.sessionVariableCalled("expected_article_list");
+        final List<ArticleDTO> actualArticleList = Serenity.sessionVariableCalled("actual_article_list");
 
         ReflectionAssert.assertReflectionEquals("There is incorrect articles displayed!",  // refactor
                 expectedArticleList , actualArticleList );

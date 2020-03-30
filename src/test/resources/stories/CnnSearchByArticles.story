@@ -10,5 +10,5 @@ Scenario: Check the ability to search by articles on the site https://edition.cn
 Given user opened site 'https://edition.cnn.com'
 When user search the site for next item: 'China'
 And user retrieved items to list with site
-And user executed Rest Request with the word 'China'
+And user executed Rest Request with the same word
 Then compared two List with site and Rest Request

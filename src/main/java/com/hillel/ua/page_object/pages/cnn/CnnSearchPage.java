@@ -50,8 +50,8 @@ public class CnnSearchPage extends AbstractPage {
 
     public List<ArticleDTO> parseCnnPageSources(final String pageSources) {
         final Document cnnArticles = Jsoup.parse(pageSources);  // разпаршен Html в Document
-        final Elements articleBlocks = cnnArticles.select("cnn-search__result cnn-search__result--article");  //10 (collection)
-        return articleBlocks.stream()
+        final Elements articleBlocks = cnnArticles.select(".cnn-search__results .cnn-search__results-list .cnn-search__result-contents");  //10 (collection) // cnn-search__result cnn-search__result--article(don't work)
+        return articleBlocks.stream()             //
                 .map(articleBlock -> {  //переменная
                     final String title = articleBlock.selectFirst("h3 a[href]").text();
                     final String body = articleBlock.selectFirst(".cnn-search__result-body").text();

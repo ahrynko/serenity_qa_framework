@@ -8,7 +8,7 @@ import java.util.Properties;
     // class вычитывает  property (key - value)
     public class PropertyHelper {
         // поле класса со ссылкой на наш property file
-        private static final String PROPERTY_FILE_PATH = "./src/main/resources/properties/qa.properties";
+        private static final String PROPERTY_FILE_PATH = "./src/main/resources/properties/prod.properties"; //qa
         private Properties properties;                        //объект который умеет читать property
 
         public PropertyHelper(){

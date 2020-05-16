@@ -26,4 +26,8 @@ public class AbstractPage extends PageObject {
         return baseurl;
     }
 
+    public void reloadPage() {
+        getDriver().navigate().refresh();
+    }
+
 }

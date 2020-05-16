@@ -6,7 +6,11 @@ public enum EnvironmentProperties {  //can store constructor
     GOOGLE_BASE_URL("google.base.url"),
     LOCAL_API_URL("local.api.url"),
     WELTRADE_BASE_URL("weltrade.base.url"),
-    CNN_BASE_URL("cnn.base.url");
+    CNN_BASE_URL("cnn.base.url"),
+
+    PROD_WELTRADE_CAB_LOGIN_URL("prod.weltrade.cab.login.url"),
+    DEV_WELTRADE_CAB_LOGIN_URL("dev.weltrade.cab.login.url"),
+    WELTRADE_PUB_QUOTES_URL("weltrade.pub.quotes.url");
 
     private String propertyKey;
 

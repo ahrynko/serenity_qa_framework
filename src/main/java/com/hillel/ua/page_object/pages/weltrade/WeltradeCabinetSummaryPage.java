@@ -1,10 +1,12 @@
 package com.hillel.ua.page_object.pages.weltrade;
 
+import com.hillel.ua.common.data.PartialUrl;
 import com.hillel.ua.page_object.pages.AbstractPage;
 import com.hillel.ua.page_object.panels.weltrade.CabHeaderPanel;
 import com.hillel.ua.page_object.panels.weltrade.SummaryAccountsPanel;
 import org.openqa.selenium.WebDriver;
 
+@PartialUrl(value = "trader/control")
 public class WeltradeCabinetSummaryPage extends AbstractPage {
 
     private static final String ACCOUNTS_PANEL = ".//div[@class='box accounts ng-star-inserted']";

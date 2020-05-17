@@ -1,5 +1,6 @@
 package com.hillel.ua.serenity.steps.weltrade;
 
+import com.hillel.ua.common.data.UrlBuilder;
 import com.hillel.ua.page_object.pages.weltrade.WeltradeCabinetNewAccountPage;
 import com.hillel.ua.page_object.pages.weltrade.WeltradeCabinetSummaryPage;
 import com.hillel.ua.page_object.panels.weltrade.ModalTabsAccountPanel;
@@ -62,4 +63,9 @@ public class WeltradeCabinetSummarySteps extends ScenarioSteps {
         return weltradeCabinetSummaryPage.getSummaryAccountsPanel().getLeverageAccountText();
     }
 
+    @Step
+    public void openPageByPartialUrl(String commonUrl) {
+        final String fullNavUrl = UrlBuilder.buildFullUrl(commonUrl, WeltradeCabinetSummaryPage.class);
+        weltradeCabinetSummaryPage.openUrl(fullNavUrl);
+    }
 }

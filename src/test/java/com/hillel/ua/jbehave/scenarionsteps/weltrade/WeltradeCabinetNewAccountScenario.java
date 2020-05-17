@@ -18,7 +18,7 @@ public class WeltradeCabinetNewAccountScenario {
     }
 
     @When("user opened new Premium trade account")
-    public void choiceTypeAccount() {
+    public void openPremiumAccount() {
         weltradeCabinetNewAccountSteps.choiceTypeAccount();
         weltradeCabinetNewAccountSteps.choicePlatform();
         weltradeCabinetNewAccountSteps.choiceCurrency();

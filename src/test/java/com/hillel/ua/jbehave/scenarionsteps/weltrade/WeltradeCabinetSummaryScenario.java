@@ -1,5 +1,6 @@
 package com.hillel.ua.jbehave.scenarionsteps.weltrade;
 
+import com.hillel.ua.common.data.EnvironmentProperties;
 import com.hillel.ua.logging.Logger;
 import com.hillel.ua.serenity.steps.weltrade.WeltradeCabinetSummarySteps;
 import net.serenitybdd.core.Serenity;
@@ -35,6 +36,12 @@ public class WeltradeCabinetSummaryScenario {
         Serenity.setSessionVariable("actual_leverage").to(actualLeverageText);
     }
 
+    @When("user opened 'Summary Page' by url: '$url'")
+    public void openSummaryPage(final EnvironmentProperties environmentProperties) {
+        final String commonUrl = environmentProperties.readProperty();
+        weltradeCabinetSummarySteps.openPageByPartialUrl(commonUrl);
+    }
+
     @Then("user retrieved Weltrade site title")
     public void retrieveWeltradeSiteTitle() {
         final String actualTitle = weltradeCabinetSummarySteps.getCurrentWeltradeTitle();
@@ -54,7 +61,7 @@ public class WeltradeCabinetSummaryScenario {
     public void getNewLeverageCorrectly() {
 
         final String actualLeverageText = Serenity.sessionVariableCalled("actual_leverage");
-        final String expectedLeverageText = weltradeCabinetSummarySteps.getLeverageAccountText(); //ref
+        final String expectedLeverageText = weltradeCabinetSummarySteps.getLeverageAccountText();
 
         final SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualLeverageText)

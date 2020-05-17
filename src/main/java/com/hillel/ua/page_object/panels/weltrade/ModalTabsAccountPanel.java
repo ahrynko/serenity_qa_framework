@@ -13,6 +13,10 @@ public class ModalTabsAccountPanel  extends AbstractPanel {
     private static final String CHANGE_BUTTON = ".//form[@class='ng-touched ng-dirty ng-valid']//button[@class='wt-btn green']";
     private static final String LEVERAGE_TEXT_LOCATOR = "(//div[@class='mat-select-value']//span/span)[6]";
 
+    private static final String CLOSE_ACCOUNT_LOCATOR = "(//a[@class='btn'])[4]";
+    private static final String CLOSE_ACCOUNT_BUTTON = "//button[@class='wt-btn red']";
+
+
     public ModalTabsAccountPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
         super(panelBaseLocation, driverDelegate);
     }
@@ -32,6 +36,14 @@ public class ModalTabsAccountPanel  extends AbstractPanel {
 
     public String getLeverageText() {
         return findBy(LEVERAGE_TEXT_LOCATOR).waitUntilVisible().getText();
+    }
+
+    public void clickCloseAccount() {
+        findBy(CLOSE_ACCOUNT_LOCATOR).waitUntilClickable().click();
+    }
+
+    public void clickCloseAccountButton() {
+        findBy(CLOSE_ACCOUNT_BUTTON).waitUntilClickable().click();
     }
 
 }

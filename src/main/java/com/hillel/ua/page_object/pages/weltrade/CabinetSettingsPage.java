@@ -2,7 +2,6 @@ package com.hillel.ua.page_object.pages.weltrade;
 
 import com.hillel.ua.common.data.PartialUrl;
 import com.hillel.ua.page_object.pages.AbstractPage;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import java.util.Random;
@@ -68,6 +67,7 @@ public class CabinetSettingsPage extends AbstractPage {
 
     public void enterSpacesToCity(final String city) {
         find(CITY_INPUT).waitUntilVisible().clear();
+        findBy(CITY_INPUT).typeAndEnter(city);
     }
 
 }

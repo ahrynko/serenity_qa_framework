@@ -42,6 +42,12 @@ public class WeltradeCabinetSummaryScenario {
         weltradeCabinetSummarySteps.openPageByPartialUrl(commonUrl);
     }
 
+    @When("user opened 'Settings Page'")
+    public void openSettingsPage() {
+        weltradeCabinetSummarySteps.navigateToMyProfile();
+        weltradeCabinetSummarySteps.clickSettings();
+    }
+
     @Then("user retrieved Weltrade site title")
     public void retrieveWeltradeSiteTitle() {
         final String actualTitle = weltradeCabinetSummarySteps.getCurrentWeltradeTitle();

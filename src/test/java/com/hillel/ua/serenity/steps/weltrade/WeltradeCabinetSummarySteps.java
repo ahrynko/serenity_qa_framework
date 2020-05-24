@@ -1,6 +1,7 @@
 package com.hillel.ua.serenity.steps.weltrade;
 
 import com.hillel.ua.common.data.UrlBuilder;
+import com.hillel.ua.page_object.pages.weltrade.CabinetSettingsPage;
 import com.hillel.ua.page_object.pages.weltrade.WeltradeCabinetNewAccountPage;
 import com.hillel.ua.page_object.pages.weltrade.WeltradeCabinetSummaryPage;
 import com.hillel.ua.page_object.panels.weltrade.ModalTabsAccountPanel;
@@ -33,7 +34,7 @@ public class WeltradeCabinetSummarySteps extends ScenarioSteps {
 
     @Step
     public Class<WeltradeCabinetNewAccountPage> clickNewAccount() {
-        weltradeCabinetSummaryPage.getCabHeaderPanel().getSubMenuTraderPanel().OpenNewAccountPage();
+        weltradeCabinetSummaryPage.getCabHeaderPanel().getSubMenuTraderPanel().openNewAccountPage();
         return WeltradeCabinetNewAccountPage.class;
     }
 
@@ -67,5 +68,16 @@ public class WeltradeCabinetSummarySteps extends ScenarioSteps {
     public void openPageByPartialUrl(String commonUrl) {
         final String fullNavUrl = UrlBuilder.buildFullUrl(commonUrl, WeltradeCabinetSummaryPage.class);
         weltradeCabinetSummaryPage.openUrl(fullNavUrl);
+    }
+
+    @Step
+    public void navigateToMyProfile() {
+        weltradeCabinetSummaryPage.getCabHeaderPanel().movedMouseToMyProfile();
+    }
+
+    @Step
+    public Class<CabinetSettingsPage> clickSettings() {
+        weltradeCabinetSummaryPage.getCabHeaderPanel().getMyProfilePanel().openSettingsPage();
+        return CabinetSettingsPage.class;
     }
 }

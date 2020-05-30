@@ -35,4 +35,13 @@ public class CabinetSettingsPageAuthorizationScenario {
         .as("There is incorrect success toast displayed!")
                .isEqualTo(toast);
     }
+
+    @Then("following error toast displayed on the page Settings: '$toast'")
+    public void verifyErrorToast(final String errorToast) {
+        final String actualToast = settingsPageAuthorizationSteps.getErrorToast();
+
+        Assertions.assertThat(actualToast) // toast with site
+                .as("There is incorrect error toast displayed!")
+                .isEqualTo(errorToast);
+    }
 }

@@ -2,7 +2,6 @@ package com.hillel.ua.serenity.steps.weltrade;
 
 import com.hillel.ua.common.data.UrlBuilder;
 import com.hillel.ua.page_object.model.weltrade.ChangePassModel;
-import com.hillel.ua.page_object.pages.weltrade.CabinetAccountsPage;
 import com.hillel.ua.page_object.pages.weltrade.CabinetSettingsPageAuthorization;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
@@ -33,5 +32,10 @@ public class CabinetSettingsPageAuthorizationSteps extends ScenarioSteps {
     @Step
     public String getSuccessToast() {
         return cabinetSettingsPageAuthorization.getSettingsAuthorizationPanel().getSuccessToast();
+    }
+
+    @Step
+    public String getErrorToast() {
+        return cabinetSettingsPageAuthorization.getSettingsAuthorizationPanel().getErrorToast();
     }
 }

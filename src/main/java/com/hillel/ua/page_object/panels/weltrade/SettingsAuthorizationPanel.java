@@ -11,6 +11,7 @@ public class SettingsAuthorizationPanel extends AbstractPanel {
     private static final String NEW_PASSWORD_INPUT = ".//input[@id='newPassword']";
     private static final String CONFIRM_NEW_PASSWORD_INPUT = ".//input[@id='confirmNewPassword']";
     private static final String SUCCESS_TOAST_LOCATOR = ".//span[contains(text(),'Password changed')]";
+    private static final String ERROR_TOAST_LOCATOR = ".//div[@class='toast error ng-star-inserted']";
 
     public SettingsAuthorizationPanel(final WebElementFacade panelBaseLocation, final AbstractPage driverDelegate) {
         super(panelBaseLocation, driverDelegate);
@@ -34,6 +35,10 @@ public class SettingsAuthorizationPanel extends AbstractPanel {
 
     public String getSuccessToast() {
         return findBy(SUCCESS_TOAST_LOCATOR).waitUntilVisible().getText();
+    }
+
+    public String getErrorToast() {
+        return findBy(ERROR_TOAST_LOCATOR).waitUntilVisible().getText();
     }
 
 }

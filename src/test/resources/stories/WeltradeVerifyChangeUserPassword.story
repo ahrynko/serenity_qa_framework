@@ -16,6 +16,19 @@ And user opened 'Settings Page'
 And user opened 'Settings Page Authorization' by url: 'PROD_WELTRADE_CAB_LOGIN_URL'
 And user tries to typed passwords, using following info:
 | validPassword | newPassword | repeatNewPassword |
-| 123qaz        | IS5FyJgv    | IS5FyJgv          |
+| 123qaz        | 123qaz      | 123qaz            |
 Then following success toast displayed on the page Settings: 'Password changed'
 
+
+Scenario: Check the change of the user's password  with incorrect current password
+
+Given user opened 'Authorization Page' by url: 'PROD_WELTRADE_CAB_LOGIN_URL'
+When user tries to sign in to Weltrade site , using following info:
+| email                   | password |
+| olhahrynko767@gmail.com | 123qaz   |
+And user closed the T2W banner
+And user opened 'Settings Page'
+And user opened 'Settings Page Authorization' by url: 'PROD_WELTRADE_CAB_LOGIN_URL'
+And user tries to typed passwords, using following info:
+| validPassword | newPassword | repeatNewPassword |
+| 123qaz123     | 123qaz      | 123qaz            |

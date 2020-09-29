@@ -18,4 +18,9 @@ public class WeltradePubMainPageSteps extends ScenarioSteps {
         weltradePubMainPage.openUrl(url);
     }
 
+    @Step
+    public String getCurrentUrl() {
+        return weltradePubMainPage.getCurrentUrl();
+    }
+
 }

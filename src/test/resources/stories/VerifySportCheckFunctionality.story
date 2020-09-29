@@ -12,7 +12,7 @@ Given user opened site using next url: 'https://www.sportchek.ca/'
 When user clicks burger menu button
 Then following menu items are displayed: 'Deals & Features, Men, Women, Kids, Footwear, Gear, Electronics, Jerseys & Fan Wear, Vitamins & Supplements, Brand'
 
-Scenario: Verify errors displayed during user sign out with incorrect data
+Scenario: Verify errors displayed during user sign out with incorrect data, using Examples
 
 Given user opened site using next url: 'https://www.sportchek.ca/'
 When user clicks 'Sign In' button

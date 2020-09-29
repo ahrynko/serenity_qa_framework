@@ -48,6 +48,12 @@ public class WeltradeCabinetSummaryScenario {
         weltradeCabinetSummarySteps.clickSettings();
     }
 
+    @When("user clicks 'Log out'")
+    public void ClickLogOut() {
+        weltradeCabinetSummarySteps.navigateToMyProfile();
+        weltradeCabinetSummarySteps.clickLogOut();
+    }
+
     @Then("user retrieved Weltrade site title")
     public void retrieveWeltradeSiteTitle() {
         final String actualTitle = weltradeCabinetSummarySteps.getCurrentWeltradeTitle();

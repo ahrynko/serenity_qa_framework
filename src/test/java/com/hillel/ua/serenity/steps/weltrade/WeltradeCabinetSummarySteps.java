@@ -80,4 +80,9 @@ public class WeltradeCabinetSummarySteps extends ScenarioSteps {
         weltradeCabinetSummaryPage.getCabHeaderPanel().getMyProfilePanel().openSettingsPage();
         return CabinetSettingsPage.class;
     }
+
+    @Step
+    public void clickLogOut() {
+        weltradeCabinetSummaryPage.getCabHeaderPanel().getMyProfilePanel().clickLogOut();
+    }
 }

@@ -30,4 +30,8 @@ public class AbstractPage extends PageObject {
         getDriver().navigate().refresh();
     }
 
+    public String getCurrentUrl() {
+        return getDriver().getCurrentUrl();
+    }
+
 }

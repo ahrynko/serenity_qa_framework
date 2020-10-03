@@ -29,7 +29,7 @@ public class CnnSearchPageScenario {
     public void getRestRequest() {
 
         RestTemplate restTemplate = new RestTemplate();
-                                                                                   // refactor
+
         final List<ArticleDTO> actualArticleList = restTemplate.retrieveArticlesFromApi();
         Serenity.setSessionVariable("actual_article_list").to(actualArticleList);
 
@@ -56,7 +56,7 @@ public class CnnSearchPageScenario {
         final List<ArticleDTO> expectedArticleList = Serenity.sessionVariableCalled("expected_article_list");
         final List<ArticleDTO> actualArticleList = Serenity.sessionVariableCalled("actual_article_list");
 
-        ReflectionAssert.assertReflectionEquals("There is incorrect articles displayed!",  // refactor
+        ReflectionAssert.assertReflectionEquals("There is incorrect articles displayed!",
                 expectedArticleList , actualArticleList );
 
     }

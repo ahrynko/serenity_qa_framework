@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)  // скипать все поля кроме (title/body)
 public class ArticleDTO {
 
+    public ArticleDTO() { }
+
     @JsonProperty("headline")  // with JSON - REST
     private String title;
 

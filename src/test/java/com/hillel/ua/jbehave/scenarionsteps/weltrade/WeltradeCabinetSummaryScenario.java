@@ -8,6 +8,7 @@ import net.thucydides.core.annotations.Steps;
 import org.assertj.core.api.SoftAssertions;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.junit.Assert;
 import org.unitils.reflectionassert.ReflectionAssert;
 
 public class WeltradeCabinetSummaryScenario {
@@ -84,5 +85,12 @@ public class WeltradeCabinetSummaryScenario {
 
         Logger.out.info("Random leverage of a trading account " + actualLeverageText);
         Logger.out.info("Leverage of the trading account in the Accounts block " + expectedLeverageText);
+    }
+
+    @Then("Weltrade cabinet logo displayed")
+    public void isLogoDisplayed() {
+        boolean logo = weltradeCabinetSummarySteps.isLogoVisible();
+
+        Assert.assertTrue("There is no logo diplayed!", logo );
     }
 }

@@ -27,13 +27,13 @@ public class WeltradeSingInGooglePage extends AbstractPage {
     }
 
     public void inputPasswordText (final String text){
-        Actions builder = new Actions(getDriver());
-        builder.moveToElement(findBy(FORGOT_PASSWORD_BUTTON)).build().perform();
-
-        findBy(PASSWORD_INPUT_LOCATOR).waitUntilVisible().type(text); //ref
+        find(NEXT_BUTTON).waitUntilNotVisible();
+        findBy(PASSWORD_INPUT_LOCATOR).waitUntilVisible().type(text);
     }
 
     public void clickPassNextButton() {
+        Actions builder = new Actions(getDriver());
+        builder.moveToElement(findBy(PASS_NEXT_BUTTON)).build().perform();
         find(PASS_NEXT_BUTTON).waitUntilClickable().click();
     }
 

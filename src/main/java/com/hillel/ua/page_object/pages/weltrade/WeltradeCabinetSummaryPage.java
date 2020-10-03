@@ -12,6 +12,7 @@ public class WeltradeCabinetSummaryPage extends AbstractPage {
     private static final String ACCOUNTS_PANEL = ".//div[@class='box accounts ng-star-inserted']";
     private static final String HEADER_CAB_LOCATOR = "//header[@role='banner']";
     private static final String T2W_BANNER = "//div[@class='modal']/div/div/a";
+    private static final String LOGO_LOCATOR = "//a[@class='d-none d-lg-block']//img";
 
     public WeltradeCabinetSummaryPage(final WebDriver webDriver) {
         super(webDriver);
@@ -31,5 +32,9 @@ public class WeltradeCabinetSummaryPage extends AbstractPage {
 
     public void closeT2WBanner() {
         find(T2W_BANNER).waitUntilClickable().click();
+    }
+
+    public boolean isLogoVisible() {
+        return find(LOGO_LOCATOR).isCurrentlyVisible();
     }
 }

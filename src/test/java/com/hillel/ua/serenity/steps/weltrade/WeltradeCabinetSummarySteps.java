@@ -82,6 +82,11 @@ public class WeltradeCabinetSummarySteps extends ScenarioSteps {
     }
 
     @Step
+    public boolean isLogoVisible() {
+        return weltradeCabinetSummaryPage.isLogoVisible();
+    }
+
+    @Step
     public void clickLogOut() {
         weltradeCabinetSummaryPage.getCabHeaderPanel().getMyProfilePanel().clickLogOut();
     }

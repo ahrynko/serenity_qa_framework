@@ -17,7 +17,7 @@ public class WeltradeSingInGoogleScenario {
 
     @When("user tries to login to Weltrade site: '$pass'")
     public void loginViaGooglePass(final String pass) {
-        weltradeSingInGoogleSteps.loginViaGooglePass(pass);  //refactor
+        weltradeSingInGoogleSteps.loginViaGooglePass(pass);
         weltradeSingInGoogleSteps.clickPassNextButton();
     }
 

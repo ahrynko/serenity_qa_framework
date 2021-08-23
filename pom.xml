@@ -37,7 +37,7 @@
         <rest-assured.version>4.2.0</rest-assured.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
         <jdbc-driver.version>8.2.1.jre8</jdbc-driver.version>
-        <jsoup-java-parser.version>1.13.1</jsoup-java-parser.version>
+        <jsoup-java-parser.version>1.14.2</jsoup-java-parser.version>
     </properties>
 
     <dependencies>

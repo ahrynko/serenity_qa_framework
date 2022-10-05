@@ -35,7 +35,7 @@
         <lombok.version>1.18.10</lombok.version>
         <commons-lang.version>3.9</commons-lang.version>
         <rest-assured.version>4.2.0</rest-assured.version>
-        <jackson-databind.version>2.10.2</jackson-databind.version>
+        <jackson-databind.version>2.12.6.1</jackson-databind.version>
         <jdbc-driver.version>8.2.1.jre8</jdbc-driver.version>
         <jsoup-java-parser.version>1.13.1</jsoup-java-parser.version>
     </properties>

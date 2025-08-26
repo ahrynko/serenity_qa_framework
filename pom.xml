@@ -33,7 +33,7 @@
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <logger.version>1.2.17</logger.version>
         <lombok.version>1.18.10</lombok.version>
-        <commons-lang.version>3.9</commons-lang.version>
+        <commons-lang.version>3.18.0</commons-lang.version>
         <rest-assured.version>4.2.0</rest-assured.version>
         <jackson-databind.version>2.10.2</jackson-databind.version>
         <jdbc-driver.version>8.2.1.jre8</jdbc-driver.version>
